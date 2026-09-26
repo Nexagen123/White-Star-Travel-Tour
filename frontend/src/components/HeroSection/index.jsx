@@ -49,14 +49,14 @@ const slides = [
 
 // ─── Tour group cards ──────────────────────────────────────────────────────────
 const heroGroups = [
-  { label: "All Groups", image: madinaImg, icon: "🕌" },
-  { label: "UAE Groups", image: uaeImg, icon: "🇦🇪" },
-  { label: "KSA Groups", image: jeddahImg, icon: "🇸🇦" },
-  { label: "Bahrain Groups", image: bahrainImg, icon: "🇧🇭" },
-  { label: "Muscat Groups", image: mascatImg, icon: "🇴🇲" },
-  { label: "Qatar Groups", image: qatarImg, icon: "🇶🇦" },
-  { label: "UK Groups", image: ukImg, icon: "🇬🇧" },
-  { label: "Umrah Packages", image: makkahImg, icon: "🕋" },
+  { label: "All Groups", image: madinaImg, tag: "Every Route" },
+  { label: "UAE Groups", image: uaeImg, tag: "United Arab Emirates" },
+  { label: "KSA Groups", image: jeddahImg, tag: "Saudi Arabia" },
+  { label: "Bahrain Groups", image: bahrainImg, tag: "Bahrain" },
+  { label: "Muscat Groups", image: mascatImg, tag: "Oman" },
+  { label: "Qatar Groups", image: qatarImg, tag: "Qatar" },
+  { label: "UK Groups", image: ukImg, tag: "United Kingdom" },
+  { label: "Umrah Packages", image: makkahImg, tag: "Makkah & Madinah" },
 ];
 
 // ─── Nav links (shown for logged-out users) ───────────────────────────────────
@@ -66,43 +66,6 @@ const navLinks = [
   { label: "Umrah", href: "/all-groups?group_type=UMRAH GROUP" },
   { label: "Contact", href: "#contact" },
 ];
-
-// ─── Cloud SVG strip ──────────────────────────────────────────────────────────
-function Clouds() {
-  return (
-    <div className="absolute bottom-0 left-0 right-0 pointer-events-none overflow-hidden h-36 z-20">
-      {/* Cloud layer 1 – slow */}
-      <svg
-        viewBox="0 0 1440 140"
-        preserveAspectRatio="none"
-        className="absolute bottom-0 w-[200%] h-full animate-cloud-slow"
-        fill="white"
-        opacity="0.9"
-      >
-        <path d="M0,80 C60,50 120,110 200,85 C280,60 340,100 420,80 C500,60 560,110 640,90 C720,70 790,115 870,90 C950,65 1010,105 1100,85 C1190,65 1260,105 1340,85 C1380,75 1420,90 1440,80 L1440,140 L0,140 Z" />
-      </svg>
-      {/* Cloud layer 2 – medium */}
-      <svg
-        viewBox="0 0 1440 120"
-        preserveAspectRatio="none"
-        className="absolute bottom-0 w-[200%] h-full animate-cloud-medium"
-        fill="white"
-        opacity="0.7"
-      >
-        <path d="M0,100 C80,70 160,115 260,95 C360,75 440,110 540,90 C640,70 720,115 820,95 C920,75 1000,110 1100,90 C1200,70 1300,110 1440,100 L1440,120 L0,120 Z" />
-      </svg>
-      {/* Cloud layer 3 – fast, full white fill */}
-      <svg
-        viewBox="0 0 1440 100"
-        preserveAspectRatio="none"
-        className="absolute bottom-0 w-[200%] h-full animate-cloud-fast"
-        fill="white"
-      >
-        <path d="M0,85 C100,55 200,100 320,80 C440,60 540,100 660,80 C780,60 880,100 1000,80 C1120,60 1240,100 1360,80 L1440,85 L1440,100 L0,100 Z" />
-      </svg>
-    </div>
-  );
-}
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function HeroSection() {
@@ -143,59 +106,73 @@ export default function HeroSection() {
 
   return (
     <>
+      <style>{`
+        @keyframes heroKen { from { transform: scale(1.08); } to { transform: scale(1); } }
+        @keyframes heroFade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-fade { animation: heroFade 0.7s ease both; }
+      `}</style>
+
       {/* ══════════ HEADER (logged-out only) ══════════ */}
       {!isLoggedIn && (
         <header
           className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
             scrolled
-              ? "bg-white/95 backdrop-blur-md shadow-lg"
-              : "bg-transparent"
+              ? "bg-white border-b border-gray-100"
+              : "bg-transparent border-b border-white/10"
           }`}
         >
           <div className="max-w-7xl mx-auto px-5 md:px-10 flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to="/" className="shrink-0">
+            <Link to="/" className="shrink-0 flex items-center gap-3">
               <img
-                style={{ height: "60px" }}
+                style={{ height: "42px" }}
                 aria-label="White Star Travel & Tours"
                 src={logo}
                 alt="White Star Travel & Tours"
-                className={`h-12 w-auto object-contain transition-all duration-300 ${
-                  scrolled ? "" : "bg-white px-5 rounded-2xl"
-                }`}
+                className="w-auto object-contain"
               />
+              <span
+                className={`hidden sm:block text-[11px] font-bold uppercase tracking-[0.25em] leading-tight ${
+                  scrolled ? "text-[#0B2C56]" : "text-white"
+                }`}
+              >
+                White Star
+                <br />
+                Travel &amp; Tours
+              </span>
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-8">
+            <nav className="hidden md:flex items-center gap-10">
               {navLinks.map((l) => (
                 <Link
                   key={l.label}
                   to={l.href}
-                  className={`text-sm font-semibold tracking-wide transition-colors duration-200 hover:text-[#F3B43F] ${
-                    scrolled ? "text-gray-800" : "text-white drop-shadow"
+                  className={`relative text-[13px] font-bold uppercase tracking-[0.15em] transition-colors duration-200 group ${
+                    scrolled ? "text-[#0B2C56]" : "text-white"
                   }`}
                 >
                   {l.label}
+                  <span className="absolute -bottom-1.5 left-0 w-0 h-px bg-[#F3B43F] transition-all duration-300 group-hover:w-full" />
                 </Link>
               ))}
             </nav>
 
             {/* CTA */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-6">
               <Link
                 to="/auth/login"
-                className={`text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-all duration-200 ${
+                className={`text-[13px] font-bold uppercase tracking-[0.15em] transition-colors ${
                   scrolled
-                    ? "border-[#0B2C56] text-[#0B2C56] hover:bg-[#0B2C56] hover:text-white"
-                    : "border-white text-white hover:bg-white hover:text-[#0B2C56]"
+                    ? "text-[#0B2C56] hover:text-[#E95432]"
+                    : "text-white hover:text-[#F3B43F]"
                 }`}
               >
                 Login
               </Link>
               <Link
                 to="/auth/register"
-                className="text-sm font-bold px-5 py-2.5 rounded-full bg-[#E95432] text-white hover:bg-[#C63E1F] transition-all duration-200 shadow-lg shadow-orange-500/30"
+                className="text-[13px] font-bold uppercase tracking-[0.15em] px-6 py-3 bg-[#E95432] text-white hover:bg-[#0B2C56] transition-all duration-300"
               >
                 Register
               </Link>
@@ -205,51 +182,51 @@ export default function HeroSection() {
             <button
               onClick={() => setNavOpen((v) => !v)}
               className={`md:hidden flex flex-col gap-1.5 p-2 ${
-                scrolled ? "text-gray-800" : "text-white"
+                scrolled ? "text-[#0B2C56]" : "text-white"
               }`}
               aria-label="Toggle menu"
             >
               <span
-                className={`block h-0.5 w-6 rounded bg-current transition-all duration-300 ${navOpen ? "rotate-45 translate-y-2" : ""}`}
+                className={`block h-0.5 w-6 bg-current transition-all duration-300 ${navOpen ? "rotate-45 translate-y-2" : ""}`}
               />
               <span
-                className={`block h-0.5 w-6 rounded bg-current transition-all duration-300 ${navOpen ? "opacity-0" : ""}`}
+                className={`block h-0.5 w-6 bg-current transition-all duration-300 ${navOpen ? "opacity-0" : ""}`}
               />
               <span
-                className={`block h-0.5 w-6 rounded bg-current transition-all duration-300 ${navOpen ? "-rotate-45 -translate-y-2" : ""}`}
+                className={`block h-0.5 w-6 bg-current transition-all duration-300 ${navOpen ? "-rotate-45 -translate-y-2" : ""}`}
               />
             </button>
           </div>
 
           {/* Mobile menu drawer */}
           <div
-            className={`md:hidden overflow-hidden transition-all duration-300 bg-white/97 backdrop-blur-md ${
-              navOpen ? "max-h-80 shadow-xl" : "max-h-0"
+            className={`md:hidden overflow-hidden transition-all duration-300 bg-white ${
+              navOpen ? "max-h-96 shadow-xl" : "max-h-0"
             }`}
           >
-            <div className="px-6 py-4 flex flex-col gap-4">
+            <div className="px-6 py-6 flex flex-col gap-5">
               {navLinks.map((l) => (
                 <Link
                   key={l.label}
                   to={l.href}
                   onClick={() => setNavOpen(false)}
-                  className="text-gray-800 font-semibold py-1 border-b border-gray-100"
+                  className="text-[#0B2C56] font-bold uppercase tracking-[0.15em] text-sm pb-3 border-b border-gray-100"
                 >
                   {l.label}
                 </Link>
               ))}
-              <div className="flex gap-3 pt-2">
+              <div className="flex gap-3 pt-1">
                 <Link
                   to="/auth/login"
                   onClick={() => setNavOpen(false)}
-                  className="flex-1 text-center text-sm font-bold py-2.5 rounded-full border-2 border-[#0B2C56] text-[#0B2C56]"
+                  className="flex-1 text-center text-xs font-bold uppercase tracking-[0.15em] py-3 border border-[#0B2C56] text-[#0B2C56]"
                 >
                   Login
                 </Link>
                 <Link
                   to="/auth/register"
                   onClick={() => setNavOpen(false)}
-                  className="flex-1 text-center text-sm font-bold py-2.5 rounded-full bg-[#E95432] text-white"
+                  className="flex-1 text-center text-xs font-bold uppercase tracking-[0.15em] py-3 bg-[#E95432] text-white"
                 >
                   Register
                 </Link>
@@ -260,65 +237,56 @@ export default function HeroSection() {
       )}
 
       {/* ══════════ HERO SECTION ══════════ */}
-      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+      <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#05162E]">
         {/* ── Slideshow backgrounds ── */}
-        {slides.map((s, i) => (
-          <div
-            key={i}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              i === current ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <img
-              src={s.img}
-              alt=""
-              className="w-full h-full object-cover scale-105"
-              style={{
-                height: "100%",
-                animation:
-                  i === current ? "kenBurns 8s ease-out forwards" : "none",
-              }}
-            />
-          </div>
-        ))}
-
-        {/* ── Gradient overlays ── */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/40 to-black/30 z-10" />
-        <div className="absolute inset-0 bg-linear-to-r from-black/50 to-transparent z-10" />
-
-        {/* ── Decorative crescent & star ── */}
-        <div className="absolute top-28 right-10 z-10 opacity-20 hidden lg:block select-none text-8xl">
-          ☪
+        <div className="absolute inset-0">
+          {slides.map((s, i) => (
+            <div
+              key={i}
+              className={`absolute inset-0 transition-opacity duration-[1400ms] ${
+                i === current ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <img
+                src={s.img}
+                alt=""
+                className="w-full h-full object-cover"
+                style={{
+                  animation: i === current ? "heroKen 6s ease-out both" : "none",
+                }}
+              />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-linear-to-t from-[#05162E] via-[#05162E]/55 to-[#05162E]/10" />
+          <div className="absolute inset-0 bg-linear-to-r from-[#05162E]/80 via-transparent to-transparent" />
         </div>
 
-        {/* ── Hero text content ── */}
-        <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-10 w-full pt-28 pb-8">
-          <div className="max-w-3xl">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6">
-              <span className="text-yellow-400 text-sm">✦</span>
-              <span className="text-white/90 text-xs font-semibold tracking-widest uppercase">
+        {/* ── Hero content ── */}
+        <div className="relative z-10 flex-1 flex items-center max-w-7xl mx-auto w-full px-5 md:px-10 pt-24">
+          <div key={current} className="hero-fade max-w-2xl">
+            <div className="flex items-center gap-3 mb-7">
+              <span className="w-10 h-px bg-[#F3B43F]" />
+              <span className="text-[#F3B43F] text-[11px] font-bold uppercase tracking-[0.35em]">
                 Trusted Travel Partner
               </span>
-              <span className="text-yellow-400 text-sm">✦</span>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black text-white leading-tight drop-shadow-2xl">
+            <h1 className="text-5xl sm:text-6xl md:text-[5.5rem] font-black text-white leading-[0.98] tracking-tight">
               <span className="block">{slides[current].heading}</span>
               <span className="block text-[#F3B43F]">
                 {slides[current].highlight}
               </span>
             </h1>
 
-            <p className="mt-5 text-white/80 text-lg md:text-xl font-medium max-w-xl leading-relaxed">
+            <p className="mt-6 text-white/70 text-base md:text-lg font-medium max-w-lg leading-relaxed">
               {slides[current].sub}
             </p>
 
             {/* CTA buttons */}
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap items-center gap-8">
               <Link
                 to={isLoggedIn ? "/dashboard/groups" : "/auth/register"}
-                className="inline-flex items-center gap-2 bg-[#E95432] hover:bg-[#C63E1F] text-white font-bold text-sm px-7 py-3.5 rounded-full shadow-xl shadow-orange-500/40 transition-all duration-200 hover:scale-105"
+                className="inline-flex items-center gap-3 bg-[#E95432] hover:bg-white hover:text-[#0B2C56] text-white font-bold text-[13px] uppercase tracking-[0.15em] px-8 py-4 transition-all duration-300"
               >
                 <span>Book a Ticket</span>
                 <svg
@@ -337,101 +305,112 @@ export default function HeroSection() {
               </Link>
               <Link
                 to="/all-groups"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold text-sm px-7 py-3.5 rounded-full transition-all duration-200"
+                className="text-white font-bold text-[13px] uppercase tracking-[0.15em] border-b border-white/40 pb-1 hover:border-[#F3B43F] hover:text-[#F3B43F] transition-all duration-300"
               >
                 View All Groups
               </Link>
             </div>
-
-            {/* Quick stats */}
-            <div className="mt-12 flex flex-wrap gap-6 md:gap-10">
-              {[
-                { num: "10,000+", label: "Happy Travellers" },
-                { num: "50+", label: "Group Destinations" },
-                { num: "14+", label: "Years Experience" },
-              ].map((s) => (
-                <div key={s.label} className="text-center md:text-left">
-                  <p className="text-2xl font-black text-white">{s.num}</p>
-                  <p className="text-white/60 text-xs font-medium tracking-wide mt-0.5">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
 
-        {/* ── Slide dots ── */}
-        <div className="relative z-20 flex justify-center gap-2 pb-40">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              aria-label={`Slide ${i + 1}`}
-              className={`rounded-full transition-all duration-300 ${
-                i === current
-                  ? "w-8 h-2.5 bg-[#F3B43F]"
-                  : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"
-              }`}
-            />
-          ))}
+        {/* ── Slide index + progress ── */}
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-5 md:px-10 pb-6">
+          <div className="flex items-center gap-4">
+            <span className="text-white font-black text-sm tabular-nums">
+              {String(current + 1).padStart(2, "0")}
+            </span>
+            <div className="flex-1 flex gap-2">
+              {slides.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goTo(i)}
+                  aria-label={`Slide ${i + 1}`}
+                  className="flex-1 h-px bg-white/25 relative overflow-hidden"
+                >
+                  {i === current && (
+                    <span className="absolute inset-0 bg-[#F3B43F] origin-left animate-[heroFade_5s_linear_both]" />
+                  )}
+                  {i < current && <span className="absolute inset-0 bg-[#F3B43F]" />}
+                </button>
+              ))}
+            </div>
+            <span className="text-white/50 font-bold text-sm tabular-nums">
+              {String(slides.length).padStart(2, "0")}
+            </span>
+          </div>
         </div>
 
-        {/* ── Animated clouds ── */}
-        <Clouds />
+        {/* ── Stat legend bar ── */}
+        <div className="relative z-10 border-t border-white/10 bg-white/[0.03] backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-5 md:px-10 grid grid-cols-3 divide-x divide-white/10">
+            {[
+              { num: "10,000+", label: "Happy Travellers" },
+              { num: "50+", label: "Group Destinations" },
+              { num: "14+", label: "Years Experience" },
+            ].map((s) => (
+              <div key={s.label} className="py-5 px-4 sm:px-8 text-center sm:text-left">
+                <p className="text-xl sm:text-2xl font-black text-white">
+                  {s.num}
+                </p>
+                <p className="text-white/50 text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] mt-1">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ══════════ GROUP CARDS STRIP ══════════ */}
-      <section className="relative bg-white pt-14 pb-20">
+      <section className="relative bg-white py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-10">
           {/* Section header */}
-          <div className="text-center mb-10">
-            <p className="text-[#E95432] text-sm font-bold tracking-widest uppercase mb-2">
-              ✦ Our Packages ✦
-            </p>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900">
-              Explore Group Travel Packages
-            </h2>
-            <p className="text-gray-500 mt-3 text-base max-w-xl mx-auto">
-              Choose your destination and let us handle the rest. Affordable,
-              reliable, and fully managed group flights.
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-14">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-10 h-px bg-[#E95432]" />
+                <span className="text-[#E95432] text-[11px] font-bold uppercase tracking-[0.35em]">
+                  Our Packages
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black text-[#0B2C56] tracking-tight">
+                Explore Group Travel
+              </h2>
+            </div>
+            <p className="text-gray-500 text-sm md:text-base max-w-sm">
+              Choose your destination and let us handle the rest — affordable,
+              reliable, fully managed group flights.
             </p>
           </div>
 
           {/* Cards grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-            {heroGroups.map((group) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
+            {heroGroups.map((group, idx) => (
               <Link
                 key={group.label}
                 to={isLoggedIn ? "/dashboard/groups" : "/auth/register"}
-                className="group relative h-48 sm:h-56 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1.5"
+                className="group"
               >
-                <img
-                  style={{
-                    height: "100%",
-                  }}
-                  src={group.image}
-                  alt={group.label}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/25 to-transparent" />
-                {/* hover shimmer */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-t from-[#E95432]/40 to-transparent" />
-
-                <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl leading-none">{group.icon}</span>
-                    <span className="text-white font-bold text-sm leading-tight">
-                      {group.label}
-                    </span>
-                  </div>
-                  <div className="mt-2 flex items-center gap-1 text-white/70 text-xs font-medium opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                    <span>
-                      {isLoggedIn ? "View Groups" : "Register to Book"}
-                    </span>
+                <div className="relative h-56 sm:h-64 overflow-hidden bg-gray-100">
+                  <span className="absolute top-3 left-3 z-10 text-white/80 font-black text-xs tabular-nums">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                  <img
+                    src={group.image}
+                    alt={group.label}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-[#05162E]/10 group-hover:bg-[#05162E]/0 transition-colors duration-500" />
+                  <div className="absolute inset-0 border border-transparent group-hover:border-[#F3B43F] transition-colors duration-300" />
+                </div>
+                <div className="mt-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+                    {group.tag}
+                  </p>
+                  <h3 className="mt-1 text-base font-black text-[#0B2C56] flex items-center justify-between">
+                    {group.label}
                     <svg
-                      className="w-3 h-3"
+                      className="w-4 h-4 text-gray-300 group-hover:text-[#E95432] group-hover:translate-x-1 transition-all duration-300"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -443,24 +422,22 @@ export default function HeroSection() {
                         d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
                       />
                     </svg>
-                  </div>
+                  </h3>
+                  <span className="block mt-2 h-px w-0 bg-[#F3B43F] transition-all duration-300 group-hover:w-full" />
                 </div>
-
-                {/* border glow on hover */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-white/30 transition-all duration-500" />
               </Link>
             ))}
           </div>
 
           {/* Bottom CTA if not logged in */}
           {!isLoggedIn && (
-            <div className="mt-12 text-center">
-              <p className="text-gray-500 text-sm mb-4">
+            <div className="mt-16 pt-12 border-t border-gray-100 text-center">
+              <p className="text-gray-500 text-sm mb-5">
                 Create a free account to browse and book group travel packages
               </p>
               <Link
                 to="/auth/register"
-                className="inline-flex items-center gap-2 bg-[#0B2C56] hover:bg-[#05162E] text-white font-bold text-sm px-8 py-3.5 rounded-full shadow-lg transition-all duration-200 hover:scale-105"
+                className="inline-flex items-center gap-3 bg-[#0B2C56] hover:bg-[#E95432] text-white font-bold text-[13px] uppercase tracking-[0.15em] px-9 py-4 transition-all duration-300"
               >
                 Register for Free
                 <svg

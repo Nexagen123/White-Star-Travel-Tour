@@ -4,8 +4,6 @@ import axiosInstance from "../../../api/axios";
 import { toast } from "react-toastify";
 import countryCodes from "../../../data/countryCodes.json"; // adjust path
 import Select from "react-select";
-import Header from "../../../components/Header";
-import CommonSections from "../../../components/CommonSections";
 import { brandImages } from "../../../theme/brandImages";
 import { theme } from "../../../theme/theme";
 
@@ -126,8 +124,6 @@ const Register = () => {
 
   return (
     <>
-      <Header />
-
       {/* Structural Minimalist Split-Screen Framework */}
       <div className="min-h-screen w-full flex flex-col lg:flex-row bg-white font-sans pt-20">
         {/* --- LEFT SIDE: Sticky Brand Info & Fixed Image Scrim Panel --- */}
@@ -320,8 +316,6 @@ const Register = () => {
           </div>
         </div>
       </div>
-
-      <CommonSections />
     </>
   );
 };

@@ -2,7 +2,7 @@ import AboutSection from "../AboutSection";
 import ServicesSection from "../ServicesSection";
 import ChooseUsSection from "../ChooseUsSection";
 import SpecialOffer from "../SpecialOffer/SpecialOffer";
-import DestinationsSection from "../Destination/Destinations";
+// import DestinationsSection from "../Destination/Destinations";
 
 export default function CommonSections() {
   return (
@@ -10,7 +10,7 @@ export default function CommonSections() {
       <ServicesSection />
       <AboutSection />
       <SpecialOffer />
-      <DestinationsSection />
+      {/* <DestinationsSection /> */}
       <ChooseUsSection />
     </>
   );
