@@ -6,7 +6,7 @@ import countryCodes from "../../../data/countryCodes.json"; // adjust path
 import Select from "react-select";
 import Header from "../../../components/Header";
 import CommonSections from "../../../components/CommonSections";
-import bg from "../../../assets/images/bahrain.webp";
+import { brandImages } from "../../../theme/brandImages";
 import { theme } from "../../../theme/theme";
 
 const Register = () => {
@@ -134,7 +134,7 @@ const Register = () => {
         <div className="w-full lg:w-5/12 relative min-h-80 lg:min-h-0 overflow-hidden flex flex-col justify-between p-8 md:p-16 text-white">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
-            style={{ backgroundImage: `url(${bg})` }}
+            style={{ backgroundImage: `url(${brandImages.uaeBg})` }}
           />
           <div className="absolute inset-0 bg-neutral-900/70" />
 
@@ -144,15 +144,15 @@ const Register = () => {
             </span>
             <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-tight pt-2">
               Expand Your Agency <br />
-              With Waqar-e-Makkah.
+              With White Star.
             </h2>
           </div>
 
           <div className="relative z-10 pt-6 border-t border-white/20 max-w-sm">
             <p className="text-white/80 text-xs leading-relaxed font-medium">
-              Gain direct access to inventory, exclusive global flight
-              structures, and high-success visa automation tools built
-              specifically for travel agents.
+              Gain access to live group inventory, Umrah packages, payment
+              records, and travel support built specifically for partner
+              agencies.
             </p>
           </div>
         </div>

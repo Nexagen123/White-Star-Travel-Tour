@@ -29,6 +29,9 @@ import { theme } from "../../theme/theme";
 import { createUmrahBooking } from "../../api/umrahBookingApi";
 import { parseMRZ } from "../../utils/parseMRZ";
 import { toast } from "react-toastify";
+import kaabaIcon from "../../assets/images/kaaba.png";
+import madinaIcon from "../../assets/images/madina.png";
+import mosqueIcon from "../../assets/images/mosque.png";
 
 const formatDate = (dateStr) => {
   if (!dateStr) return "N/A";
@@ -1444,12 +1447,12 @@ export default function UmrahBookingPage({ user }) {
                             src={
                               city?.toLowerCase().includes("makkah") ||
                               city?.toLowerCase().includes("mecca")
-                                ? "https://www.mtctutorials.com/wp-content/uploads/2022/06/Kaaba-High-Quality-PNG-Image-1.png"
+                                ? kaabaIcon
                                 : city?.toLowerCase().includes("madinah") ||
                                     city?.toLowerCase().includes("madina") ||
                                     city?.toLowerCase().includes("medina")
-                                  ? "https://png.pngtree.com/png-clipart/20220616/original/pngtree-prophet-mohammad-madina-or-madinah-nabawi-mosque-masjid-milad-un-nabi-png-image_8081426.png"
-                                  : "https://static.vecteezy.com/system/resources/previews/024/160/410/non_2x/blank-board-with-shop-store-building-icon-in-peach-and-white-color-vector.jpg"
+                                  ? madinaIcon
+                                  : mosqueIcon
                             }
                             alt={city}
                           />

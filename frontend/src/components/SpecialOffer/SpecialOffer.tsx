@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../../api/axios';
+import { fallbackOffers } from '../../theme/brandImages';
 
 interface Offer {
     _id: string;
@@ -31,10 +32,7 @@ export default function SpecialOffer() {
         }
     };
 
-    // --- CONDITION: Agar loading khatam ho jaye aur offers khali hon to component render mat karo ---
-    if (!loading && offers.length === 0) {
-        return null;
-    }
+    const visibleOffers = !loading && offers.length === 0 ? fallbackOffers : offers;
 
     // Handle smooth closing logic
     const handleClose = () => {
@@ -46,12 +44,12 @@ export default function SpecialOffer() {
     };
 
     return (
-        <div className="bg-[#FDFCF8] py-16 px-4">
+        <div className="bg-[#F5F8FC] py-16 px-4">
             <div className="max-w-7xl mx-auto">
                 {/* Heading Section */}
                 <div className='relative w-fit mt-4 mb-12 text-center mx-auto'>
-                    <h2 className='relative text-[#2A166D] text-3xl sm:text-4xl z-1 text-center font-bold'>Special Offers</h2>
-                    <div className='absolute bottom-1 left-0 w-full h-[35%] bg-[#d6d30b]/50 rounded-md z-0'></div>
+                    <h2 className='relative text-[#0B2C56] text-3xl sm:text-4xl z-1 text-center font-bold'>Featured Travel Updates</h2>
+                    <div className='absolute bottom-1 left-0 w-full h-[35%] bg-[#F3B43F]/45 rounded-md z-0'></div>
                 </div>
 
                 {/* Grid Layout */}
@@ -65,8 +63,8 @@ export default function SpecialOffer() {
                             </div>
                         ))
                     ) : (
-                        offers.map((offer) => (
-                            <div key={offer._id} className="group bg-white border border-gray-100 p-2 transition-all hover:shadow-xl hover:shadow-gray-200/40">
+                        visibleOffers.map((offer) => (
+                            <div key={offer._id} className="group bg-white border border-[#D9E4EF] p-2 transition-all hover:shadow-xl hover:shadow-[#0B2C56]/10">
                                 <div
                                     className="relative aspect-[4/3] overflow-hidden cursor-zoom-in bg-gray-100"
                                     onClick={() => setPreviewImage(offer.image)}
@@ -86,7 +84,7 @@ export default function SpecialOffer() {
 
                                 <div className="py-4 px-2 flex justify-between items-center">
                                     <h3 className="text-sm font-medium text-gray-800">{offer.title}</h3>
-                                    <button onClick={() => setPreviewImage(offer.image)} className="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors">
+                                    <button onClick={() => setPreviewImage(offer.image)} className="text-xs font-bold text-[#1069A8] hover:text-[#E95432] transition-colors">
                                         VIEW DETAIL
                                     </button>
                                 </div>
@@ -116,7 +114,7 @@ export default function SpecialOffer() {
                         <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-4 px-6 py-2 bg-black/80 text-white rounded-full">
                             <button
                                 onClick={() => window.open(previewImage)}
-                                className="hover:text-blue-400 transition-colors text-sm font-medium"
+                                className="hover:text-[#F3B43F] transition-colors text-sm font-medium"
                             >
                                 Download
                             </button>

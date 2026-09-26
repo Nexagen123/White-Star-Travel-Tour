@@ -438,7 +438,7 @@ const AppSidebar: React.FC = () => {
       <div className={`py-4 border-t border-gray-200 dark:border-gray-800 ${!isExpanded && !isHovered ? "lg:text-center" : "text-center"}`}>
         {isExpanded || isHovered || isMobileOpen ? (
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} <a href="https://waqaremakkah.com/" target="_blank">Waqar-e-Makkah Travel</a><br />All rights reserved.
+            © {new Date().getFullYear()} <a href="https://waqaremakkah.com/" target="_blank">White Start Travel & Tour</a><br />All rights reserved.
           </p>
         ) : (
           <p className="text-xs text-gray-500 dark:text-gray-400">

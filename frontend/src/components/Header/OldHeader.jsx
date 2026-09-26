@@ -49,7 +49,7 @@ function OldHeader({ user, handleLogout }) {
             {user && (
               <Link to="/" className="flex items-center">
                 <img
-                  style={{ height: "60px" }}
+                  style={{ maxHeight: "100px" }}
                   src={logo}
                   alt="White Star Travel & Tours"
                   className="object-contain"
@@ -61,9 +61,13 @@ function OldHeader({ user, handleLogout }) {
             {user && (
               <div className="hidden xl:flex items-center gap-8">
                 {groupTypes.map((group) => {
-                  const isActive =
-                    location.pathname === `/${group.path}` || 
-                    (location.pathname === "/all-groups" && currentGroupType === group.value);
+                  const isGroupsRoute = group.path.startsWith(
+                    "dashboard/groups",
+                  );
+                  const isActive = isGroupsRoute
+                    ? location.pathname === "/dashboard/groups" &&
+                      currentGroupType === group.value
+                    : location.pathname === `/${group.path}`;
 
                   return (
                     <Link

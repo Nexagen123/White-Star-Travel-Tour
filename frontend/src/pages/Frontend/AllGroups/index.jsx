@@ -10,6 +10,9 @@ import MaskedDatePicker from "../../../components/MaskedDatePicker";
 import { theme } from "../../../theme/theme";
 import TopBar from "../../../components/TopBar/TopBar";
 import { generateUmrahPackagesPDF } from "../../../utils/umrahPDFGen";
+import airlineFallback from "../../../assets/images/bgaeroplane.webp";
+import kaabaIcon from "../../../assets/images/kaaba.png";
+import madinaIcon from "../../../assets/images/madina.png";
 
 // Shows an airline's logo when one is available; falls back to just the
 // airline name (no broken-image icon) when there's no logo or it fails to load.
@@ -120,7 +123,7 @@ export default function AllGroups({ headerType, header, searchParams }) {
   //       return `${flight.flightNo} *${g.packageName}* ${flight.sectorFrom} → ${flight.sectorTo}..... *PKR ${price.toLocaleString()}*`;
   //     })
   //     .filter(Boolean);
-  //   const footer = `*ALL GROUPS ARE NON REFUNDABLE AND NON CHANGEABLE*\n=======================\nWaqar-e-Makkah Travel`;
+  //   const footer = `*ALL GROUPS ARE NON REFUNDABLE AND NON CHANGEABLE*\n=======================\nWhite Star Travel & Tours`;
   //   return [headerText, ...lines, "=======================", footer].join("\n");
   // };
 
@@ -147,7 +150,7 @@ export default function AllGroups({ headerType, header, searchParams }) {
   //     ...Object.values(group.rooms || {}).filter(Boolean),
   //   );
   //   const price = isFinite(minPrice) ? minPrice : 0;
-  //   const text = `${flight.flightNo} *${group.packageName}* ${flight.sectorFrom} → ${flight.sectorTo}..... *PKR ${price.toLocaleString()}*\n=======================\n*ALL GROUPS ARE NON REFUNDABLE AND NON CHANGEABLE*\n=======================\nWaqar-e-Makkah Travel`;
+  //   const text = `${flight.flightNo} *${group.packageName}* ${flight.sectorFrom} → ${flight.sectorTo}..... *PKR ${price.toLocaleString()}*\n=======================\n*ALL GROUPS ARE NON REFUNDABLE AND NON CHANGEABLE*\n=======================\nWhite Start Travel & Tour`;
   //   try {
   //     await navigator.clipboard.writeText(text);
   //   } catch {
@@ -983,13 +986,12 @@ export default function AllGroups({ headerType, header, searchParams }) {
                     style={{ height: "30px" }}
                     src={
                       group.airline?.logo_url ||
-                      "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=100&h=100&fit=crop"
+                      airlineFallback
                     }
                     alt={group.airlineName}
                     className="w-full h-full object-contain p-1"
                     onError={(e) => {
-                      e.currentTarget.src =
-                        "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=100&h=100&fit=crop";
+                      e.currentTarget.src = airlineFallback;
                     }}
                   />
                 </div>
@@ -1000,13 +1002,13 @@ export default function AllGroups({ headerType, header, searchParams }) {
                 <HotelColumn
                   title="Makkah"
                   hotels={makkahHotels}
-                  icon="https://www.mtctutorials.com/wp-content/uploads/2022/06/Kaaba-High-Quality-PNG-Image-1.png"
+                  icon={kaabaIcon}
                   emptyLabel="No hotel"
                 />
                 <HotelColumn
                   title="Madinah"
                   hotels={madinahHotels}
-                  icon="https://png.pngtree.com/png-clipart/20220616/original/pngtree-prophet-mohammad-madina-or-madinah-nabawi-mosque-masjid-milad-un-nabi-png-image_8081426.png"
+                  icon={madinaIcon}
                   emptyLabel="No hotel"
                 />
               </div>

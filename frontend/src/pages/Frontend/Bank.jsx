@@ -70,7 +70,7 @@ const Bank = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#f8fafc]">
-        <Loader2 className="w-12 h-12 animate-spin text-[#1CA8CB] mb-4" />
+        <Loader2 className="w-12 h-12 animate-spin text-[#1069A8] mb-4" />
         <p className="text-gray-500 font-medium">Loading...</p>
       </div>
     );
@@ -83,7 +83,7 @@ const Bank = () => {
         <h3 className="text-xl font-bold text-gray-800 mb-2">{error}</h3>
         <button
           onClick={fetchBanks}
-          className="flex items-center gap-2 px-6 py-2 bg-[#1CA8CB] text-white rounded-full hover:bg-[#1589a7] transition-all"
+          className="flex items-center gap-2 px-6 py-2 bg-[#1069A8] text-white rounded-full hover:bg-[#0B2C56] transition-all"
         >
           <RefreshCw size={18} /> Retry Again
         </button>
@@ -112,7 +112,7 @@ const Bank = () => {
                 className="group overflow-hidden relative"
               >
                 {/* Decorative Top Bar */}
-                <div className="h-1.5 w-full bg-[#1CA8CB]" />
+                <div className="h-1.5 w-full bg-linear-to-r from-[#0B2C56] via-[#1069A8] to-[#F3B43F]" />
 
                 <div className="p-8">
                   {/* Header: Logo & Bank Name */}
@@ -126,7 +126,7 @@ const Bank = () => {
                             className="max-h-full object-contain"
                           />
                         ) : (
-                          <Building2 className="text-[#1CA8CB]" size={28} />
+                          <Building2 className="text-[#1069A8]" size={28} />
                         )}
                       </div>
                       <div>
@@ -144,7 +144,7 @@ const Bank = () => {
                   <div className="space-y-5">
                     {/* Account Title */}
                     <div className="flex items-start gap-3">
-                      <div className="mt-1 text-[#1CA8CB]">
+                      <div className="mt-1 text-[#1069A8]">
                         <User size={16} />
                       </div>
                       <div>
@@ -159,7 +159,7 @@ const Bank = () => {
 
                     {/* Account Number */}
                     <div className="flex items-start gap-3">
-                      <div className="mt-1 text-[#1CA8CB]">
+                      <div className="mt-1 text-[#1069A8]">
                         <Hash size={16} />
                       </div>
                       <div className="flex-1">
@@ -174,7 +174,7 @@ const Bank = () => {
                             onClick={() =>
                               handleCopy(bank.accountNo, `${bank._id}-acc`)
                             }
-                            className="p-1.5 rounded-md hover:bg-gray-100 text-gray-400 hover:text-[#1CA8CB] transition-colors"
+                            className="p-1.5 rounded-md hover:bg-gray-100 text-gray-400 hover:text-[#E95432] transition-colors"
                           >
                             {copiedId === `${bank._id}-acc` ? (
                               <Check size={14} />
@@ -189,7 +189,7 @@ const Bank = () => {
                     {/* IBAN */}
                     <div className="bg-gray-50 rounded-2xl p-4 border border-transparent group-hover:border-blue-50 transition-colors">
                       <div className="flex items-center gap-2 mb-2">
-                        <Globe size={12} className="text-[#1CA8CB]" />
+                        <Globe size={12} className="text-[#1069A8]" />
                         <p className="text-[10px] uppercase text-gray-400 font-bold tracking-widest">
                           IBAN (International)
                         </p>
@@ -205,7 +205,7 @@ const Bank = () => {
                               `${bank._id}-iban`,
                             )
                           }
-                          className="text-gray-400 hover:text-[#1CA8CB]"
+                          className="text-gray-400 hover:text-[#E95432]"
                         >
                           {copiedId === `${bank._id}-iban` ? (
                             <Check size={14} />

@@ -137,7 +137,7 @@ function extractIATA(terminal: string): string {
 //     const footer =
 //         `*ALL GROUPS ARE NON REFUNDABLE AND NON CHANGEABLE*
 // =======================
-// Waqar-e-Makkah Travel
+// White Start Travel & Tour
 // Mobile: 0344-7736611
 // Address: Opposite General Bus Stand, Faisalabad Road, Sumundri.New Civil lines Faisalabad.
 // Website: https://waqaremakkah.com/`;
@@ -284,7 +284,7 @@ function buildCopyText(groups: UnifiedGroup[]): string {
     const footer =
         `*ALL GROUPS ARE NON REFUNDABLE AND NON CHANGEABLE*
 =======================
-Waqar-e-Makkah Travel
+White Start Travel & Tour
 Mobile: 0344-7736611
 Address: Opposite General Bus Stand, Faisalabad Road, Sumundri.
 Website: https://waqaremakkah.com/`;
@@ -445,7 +445,7 @@ export default function ManageSectors() {
 
     return (
         <>
-            <PageMeta title="All Sectors - Waqar-e-Makkah Travel" description="View all sectors list" />
+            <PageMeta title="All Sectors - White Start Travel & Tour" description="View all sectors list" />
 
             <div className="mb-6">
                 <PageBreadCrumb pageTitle="All Sectors" />

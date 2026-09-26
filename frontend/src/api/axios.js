@@ -70,7 +70,7 @@ export default axiosInstance;
 //       const currentHost = window.location.hostname;
 
 //       const isDashboardDomain =
-//         currentHost === "Waqar-e-Makkah Traveltravel.com" || currentHost === "www.Waqar-e-Makkah Traveltravel.com";
+//         currentHost === "White Start Travel & Tourtravel.com" || currentHost === "www.White Start Travel & Tourtravel.com";
 
 //       if (isDashboardDomain && !window.location.pathname.startsWith("/")) {
 //         window.location.href = "https://waqaremakkah.com/login";

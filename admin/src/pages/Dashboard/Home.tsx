@@ -215,7 +215,7 @@ function buildCopyText(groups: UnifiedGroup[]): string {
   const footer =
     `*ALL GROUPS ARE NON REFUNDABLE AND NON CHANGEABLE*
 =======================
-Waqar-e-Makkah Travel
+White Start Travel & Tour
 Mobile: 0344-7736611
 Address: Opposite General Bus Stand, Faisalabad Road, Sumundri.
 Website: https://waqaremakkah.com/`;
@@ -427,8 +427,8 @@ export default function Home() {
   return (
     <>
       <PageMeta
-        title="Dashboard | Waqar-e-Makkah Travel"
-        description="Dashboard overview for Waqar-e-Makkah Travel"
+        title="Dashboard | White Star Travel"
+        description="Dashboard overview for White Star Travel"
       />
 
       {hasPermission(user, "view_dashboard") &&
@@ -436,13 +436,13 @@ export default function Home() {
           {/* ===== NEW DESIGN - ONLY UI CHANGES ===== */}
 
           {/* Modern Header with Gradient Accent */}
-          <div className="relative mb-8 overflow-hidden rounded-2xl bg-linear-to-r from-blue-600 via-blue-500 to-indigo-600 p-6 shadow-lg">
+          <div className="ws-admin-hero relative mb-8 overflow-hidden rounded-2xl p-6">
             <div className="absolute right-0 top-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-white/10" />
             <div className="absolute bottom-0 left-1/4 h-32 w-32 rounded-full bg-white/5" />
 
             <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div>
-                <div className="flex items-center gap-2 text-sm text-white/80 mb-2">
+                <div className="ws-admin-muted flex items-center gap-2 text-sm mb-2">
                   <HomeIcon className="w-4 h-4" />
                   <span>/</span>
                   <span className="text-white font-medium">Dashboard</span>
@@ -450,7 +450,7 @@ export default function Home() {
                 <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
                   Welcome back! 👋
                 </h1>
-                <p className="text-white/80 mt-1 text-sm">
+                <p className="ws-admin-muted mt-1 text-sm">
                   Here's what's happening with your travel business today.
                 </p>
               </div>
@@ -501,7 +501,7 @@ export default function Home() {
           {hasPermission(user, "dashboard_group_category") && (
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
-                <div className="h-8 w-1 rounded-full bg-linear-to-b from-blue-500 to-indigo-600" />
+                <div className="ws-section-accent h-8 w-1 rounded-full" />
                 <h2 className="text-lg font-bold text-gray-900 dark:text-white">Group Categories</h2>
               </div>
 
@@ -512,13 +512,13 @@ export default function Home() {
                     : `/local-groups?category=${encodeURIComponent(category.category === "kuwait" ? "muscat" : category.category)}`;
 
                   const gradients: Record<string, string> = {
-                    "from-slate-500 to-blue-600": "linear-gradient(135deg, #64748b, #2563eb)",
-                    "from-cyan-500 to-sky-600": "linear-gradient(135deg, #06b6d4, #0284c7)",
-                    "from-emerald-500 to-teal-600": "linear-gradient(135deg, #10b981, #0d9488)",
-                    "from-violet-500 to-indigo-600": "linear-gradient(135deg, #8b5cf6, #4f46e5)",
-                    "from-rose-500 to-red-600": "linear-gradient(135deg, #f43f5e, #dc2626)",
+                    "from-slate-500 to-blue-600": "linear-gradient(135deg, #05162E, #0B2C56)",
+                    "from-cyan-500 to-sky-600": "linear-gradient(135deg, #0B2C56, #10A7D8)",
+                    "from-emerald-500 to-teal-600": "linear-gradient(135deg, #1069A8, #0B2C56)",
+                    "from-violet-500 to-indigo-600": "linear-gradient(135deg, #0B2C56, #F3B43F)",
+                    "from-rose-500 to-red-600": "linear-gradient(135deg, #E95432, #0B2C56)",
                   };
-                  const bg = gradients[category.accentClass] || "linear-gradient(135deg,#64748b,#2563eb)";
+                  const bg = gradients[category.accentClass] || "linear-gradient(135deg,#0B2C56,#1069A8)";
 
                   return (
                     <div
@@ -572,7 +572,7 @@ export default function Home() {
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="h-8 w-1 rounded-full bg-linear-to-b from-blue-500 to-indigo-600" />
+                  <div className="ws-section-accent h-8 w-1 rounded-full" />
                   <div>
                     <h2 className="text-lg font-bold text-gray-900 dark:text-white">Recent Bookings</h2>
                     <p className="text-xs text-gray-500 dark:text-gray-400">Latest 5 bookings</p>
@@ -678,7 +678,7 @@ export default function Home() {
             <div className="mb-8">
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-6 border border-gray-100 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="h-8 w-1 rounded-full bg-linear-to-b from-blue-500 to-indigo-600" />
+                  <div className="ws-section-accent h-8 w-1 rounded-full" />
                   <div>
                     <h2 className="text-lg font-bold text-gray-900 dark:text-white">Agent Performance</h2>
                     <p className="text-xs text-gray-500 dark:text-gray-400">Real-time agent status overview</p>

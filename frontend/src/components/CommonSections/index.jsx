@@ -10,7 +10,7 @@ export default function CommonSections() {
       <ServicesSection />
       <AboutSection />
       <SpecialOffer />
-      {/* <DestinationsSection /> */}
+      <DestinationsSection />
       <ChooseUsSection />
     </>
   );

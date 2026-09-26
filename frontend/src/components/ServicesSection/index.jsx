@@ -163,20 +163,20 @@ export default function ServicesSection() {
         style={{ backgroundColor: theme?.colors?.primaryDark || "#0a1a2f" }}
       >
         {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-orange-400/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#F3B43F]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/5 rounded-full blur-2xl" />
 
         <div className="relative z-10 space-y-4">
           <div className="flex items-center gap-2">
-            <Sparkles size={16} className="text-orange-400" />
-            <span className="text-xs uppercase tracking-widest text-orange-400 font-bold">
+            <Sparkles size={16} className="text-[#F3B43F]" />
+            <span className="text-xs uppercase tracking-widest text-[#F3B43F] font-bold">
               Exclusive Rates
             </span>
           </div>
 
           <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-none">
             Up To <br />
-            <span className="text-orange-400">50%</span> <br />
+            <span className="text-[#F3B43F]">50%</span> <br />
             <span className="text-2xl font-light tracking-normal">OFF</span>
           </h2>
 
@@ -189,7 +189,7 @@ export default function ServicesSection() {
         {/* Enhanced Stats */}
         <div className="relative z-10 mt-12 lg:mt-0 grid grid-cols-3 gap-4 pt-8 border-t border-white/10">
           <div className="group cursor-pointer">
-            <p className="text-2xl font-bold group-hover:text-orange-400 transition-colors">
+            <p className="text-2xl font-bold group-hover:text-[#F3B43F] transition-colors">
               50k+
             </p>
             <p className="text-[10px] text-white/60 uppercase tracking-wider">
@@ -197,7 +197,7 @@ export default function ServicesSection() {
             </p>
           </div>
           <div className="group cursor-pointer">
-            <p className="text-2xl font-bold group-hover:text-orange-400 transition-colors">
+            <p className="text-2xl font-bold group-hover:text-[#F3B43F] transition-colors">
               12k+
             </p>
             <p className="text-[10px] text-white/60 uppercase tracking-wider">
@@ -205,7 +205,7 @@ export default function ServicesSection() {
             </p>
           </div>
           <div className="group cursor-pointer">
-            <p className="text-2xl font-bold group-hover:text-orange-400 transition-colors">
+            <p className="text-2xl font-bold group-hover:text-[#F3B43F] transition-colors">
               98%
             </p>
             <p className="text-[10px] text-white/60 uppercase tracking-wider">
@@ -218,7 +218,7 @@ export default function ServicesSection() {
       {/* --- RIGHT PANEL: Enhanced Carousel --- */}
       <div
         className="w-full lg:w-3/4 p-8 md:p-12 flex flex-col justify-between overflow-hidden relative"
-        style={{ backgroundColor: theme?.colors?.secondaryLight || "#0088a8" }}
+        style={{ backgroundColor: theme?.colors?.primarySky || "#10A7D8" }}
       >
         {/* Background pattern */}
         <div
@@ -233,13 +233,13 @@ export default function ServicesSection() {
         <div className="relative z-10 flex items-end justify-between mb-8">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <div className="w-1 h-8 bg-orange-400 rounded-full" />
+              <div className="w-1 h-8 bg-[#F3B43F] rounded-full" />
               <p className="text-xs uppercase tracking-widest text-white/80 font-semibold">
                 Our Offerings
               </p>
             </div>
             <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-              Incredible <span className="text-orange-300">Last-Minute</span>{" "}
+              Incredible <span className="text-[#F3B43F]">Last-Minute</span>{" "}
               Offers
             </h3>
           </div>
@@ -254,7 +254,7 @@ export default function ServicesSection() {
             </button>
             <button
               onClick={() => scroll("right")}
-              className="w-12 h-12 rounded-full flex items-center justify-center bg-white hover:bg-orange-400 text-black hover:text-white transition-all hover:scale-105 shadow-lg"
+              className="w-12 h-12 rounded-full flex items-center justify-center bg-white hover:bg-[#E95432] text-black hover:text-white transition-all hover:scale-105 shadow-lg"
               aria-label="Next items"
             >
               <ArrowRight size={20} />
@@ -301,7 +301,7 @@ export default function ServicesSection() {
               {/* Enhanced Status Tags */}
               <div className="absolute top-4 left-4 flex gap-2">
                 <span className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-black bg-white/90 backdrop-blur-sm rounded-lg shadow-lg flex items-center gap-1.5">
-                  <Star size={12} className="fill-orange-400 text-orange-400" />
+                  <Star size={12} className="fill-[#F3B43F] text-[#F3B43F]" />
                   {service.rating}
                 </span>
                 <span className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white bg-black/50 backdrop-blur-sm rounded-lg border border-white/20">
@@ -316,7 +316,7 @@ export default function ServicesSection() {
 
               {/* Enhanced Main Content */}
               <div className="absolute bottom-0 inset-x-0 p-6 text-white flex flex-col justify-end">
-                <h4 className="text-2xl font-bold tracking-tight mb-2 group-hover:text-orange-300 transition-colors">
+                <h4 className="text-2xl font-bold tracking-tight mb-2 group-hover:text-[#F3B43F] transition-colors">
                   {service.title}
                 </h4>
                 <p className="text-sm text-white/80 line-clamp-2 leading-relaxed mb-4">
@@ -324,7 +324,7 @@ export default function ServicesSection() {
                 </p>
 
                 <div className="flex items-center gap-2 mb-4">
-                  <Clock size={14} className="text-orange-300" />
+                  <Clock size={14} className="text-[#F3B43F]" />
                   <span className="text-xs text-white/60">
                     Limited time offer • Book now
                   </span>
@@ -350,7 +350,7 @@ export default function ServicesSection() {
               }}
               className={`h-2 rounded-full transition-all duration-300 ${
                 index === currentIndex
-                  ? "w-8 bg-orange-400"
+                  ? "w-8 bg-[#F3B43F]"
                   : "w-2 bg-white/30 hover:bg-white/50"
               }`}
             />

@@ -45,7 +45,7 @@ const RippleButton = ({ children, style, onClick, className, to }) => {
         left: r.x,
         width: r.size,
         height: r.size,
-        background: "rgba(255,122,0,0.2)", // Orange subtle ripple
+        background: "rgba(233,84,50,0.18)",
         borderRadius: "50%",
         pointerEvents: "none",
         transform: "scale(0)",
@@ -248,19 +248,19 @@ const DashboardLayout = ({ user, handleLogout }) => {
             border-left: 3px solid transparent !important;
           }
           .menu-link:hover { 
-            background: rgba(255, 122, 0, 0.05) !important; 
-            color: #FF7A00 !important;
-            border-left: 3px solid #FF7A00 !important;
+            background: rgba(233, 84, 50, 0.08) !important; 
+            color: #E95432 !important;
+            border-left: 3px solid #E95432 !important;
           }
           .menu-link:hover .icon-box {
-            color: #FF7A00 !important;
+            color: #E95432 !important;
           }
 
           /* Shiny Active Link Look (Glossy Top Highlight) */
           .menu-link-active {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+            background: linear-gradient(135deg, #0B2C56 0%, #05162E 100%) !important;
             color: #fff !important;
-            border-left: 3px solid #FF7A00 !important;
+            border-left: 3px solid #F3B43F !important;
             box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.15);
             position: relative;
           }
@@ -275,14 +275,14 @@ const DashboardLayout = ({ user, handleLogout }) => {
 
           /* Search focus boxy style */
           .db-search:focus { 
-            border-color: #FF7A00 !important; 
-            box-shadow: 0 0 0 2px rgba(255,122,0,0.15) !important;
+            border-color: #1069A8 !important; 
+            box-shadow: 0 0 0 2px rgba(16,105,168,0.16) !important;
             background: #fff !important;
           }
 
           /* Dropdown items */
           .dd-item { transition: all 0.15s ease; border-radius: 4px; }
-          .dd-item:hover { background: rgba(255, 122, 0, 0.05) !important; color: #FF7A00 !important; }
+          .dd-item:hover { background: rgba(233, 84, 50, 0.08) !important; color: #E95432 !important; }
           .dd-item-danger:hover { background: #fff1f2 !important; color: #be123c !important; }
 
           .db-sidebar {
@@ -295,10 +295,10 @@ const DashboardLayout = ({ user, handleLogout }) => {
           /* Active sub-item orange cube indicators */
           .sub-active-dot {
             width: 5px; height: 5px;
-            background: #FF7A00; 
+            background: #F3B43F; 
             border-radius: 0px; /* Rigid Boxy design */
             flex-shrink: 0;
-            box-shadow: 0 0 6px #FF7A00;
+            box-shadow: 0 0 6px rgba(243, 180, 63, 0.9);
           }
 
           @media (max-width: 768px) {
@@ -309,7 +309,12 @@ const DashboardLayout = ({ user, handleLogout }) => {
 
         <div
           className="db-layout"
-          style={{ display: "flex", minHeight: "100vh", background: "#f4f5f8" }}
+          style={{
+            display: "flex",
+            minHeight: "100vh",
+            background:
+              "linear-gradient(180deg, #ffffff 0%, #f5f8fc 45%, #eef6fb 100%)",
+          }}
         >
           {/* Mobile overlay */}
           {sidebarOpen && isMobile && (
@@ -543,9 +548,9 @@ const DashboardLayout = ({ user, handleLogout }) => {
                                       alignItems: "center",
                                       gap: "8px",
                                       background: active
-                                        ? "rgba(255, 122, 0, 0.08)"
+                                        ? "rgba(243, 180, 63, 0.16)"
                                         : "transparent",
-                                      color: active ? "#FF7A00" : "#627d98",
+                                      color: active ? "#0B2C56" : "#627d98",
                                       textDecoration: "none",
                                       animation: bookingsExpanded
                                         ? `subMenuSlide 0.2s ease ${sIdx * 30}ms both`
@@ -594,8 +599,8 @@ const DashboardLayout = ({ user, handleLogout }) => {
                               style={{
                                 flexShrink: 0,
                                 color: active
-                                  ? "#FF7A00"
-                                  : "#94a3b8" /* Icons glow premium orange when active */,
+                                  ? "#F3B43F"
+                                  : "#94a3b8",
                                 display: "flex",
                               }}
                             >
@@ -689,7 +694,7 @@ const DashboardLayout = ({ user, handleLogout }) => {
                       width: "6px",
                       height: "6px",
                       background:
-                        "#FF7A00" /* Alerts now feature the secondary orange brand tone */,
+                        "#E95432",
                       borderRadius: "50%",
                     }}
                   />
@@ -719,7 +724,7 @@ const DashboardLayout = ({ user, handleLogout }) => {
                         borderRadius: "2px",
                         background: user?.logo
                           ? `url(${user.logo}) center/cover`
-                          : "linear-gradient(135deg, #1e293b 0%, #FF7A00 100%)" /* Premium dark to orange tint */,
+                          : "linear-gradient(135deg, #0B2C56 0%, #E95432 100%)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -823,7 +828,7 @@ const DashboardLayout = ({ user, handleLogout }) => {
                             fontWeight: "500",
                           }}
                         >
-                          <UserCircle size={15} style={{ color: "#FF7A00" }} />
+                          <UserCircle size={15} style={{ color: "#E95432" }} />
                           My Profile
                         </Link>
 

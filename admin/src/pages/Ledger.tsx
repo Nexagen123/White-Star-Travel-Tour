@@ -404,7 +404,7 @@ const Ledger = () => {
               <div className="ledger-print-company-text">
                 <strong>{userName.toUpperCase()}</strong>
                 <div>Waqar e Makkah Travel</div>
-                <div>Email: waqaremakkah@gmail.com</div>
+                <div>Email: mirfanawais119@gmail.com</div>
                 <div>Account statement generated from Waqar e Makkah Travel admin portal</div>
               </div>
             </div>

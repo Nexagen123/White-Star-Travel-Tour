@@ -1,24 +1,14 @@
 import React from "react";
 import {
   Compass,
-  Sparkles,
   Users,
   Clock,
   Shield,
   ChevronRight,
-  Globe,
   MapPin,
-  Award,
   CheckCircle,
 } from "lucide-react";
-
-// Global image variables - change these URLs as needed
-const ABOUT_IMAGE_1 =
-  "https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?auto=format&fit=crop&q=80&w=1000";
-const ABOUT_IMAGE_2 =
-  "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&q=80&w=600";
-const ABOUT_IMAGE_3 =
-  "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80&w=800";
+import { brandImages } from "../../theme/brandImages";
 
 export default function AboutSection() {
   const features = [
@@ -63,11 +53,11 @@ export default function AboutSection() {
       {/* Background Decorations */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-[#0B2C56]/5 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-linear-to-tr from-[#e95432]/5 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-linear-to-tr from-[#E95432]/5 to-transparent"></div>
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#e95432]/10 rounded-full blur-3xl"></div>
+      <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#E95432]/10 rounded-full blur-3xl"></div>
       <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-[#0B2C56]/10 rounded-full blur-3xl"></div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
@@ -77,8 +67,8 @@ export default function AboutSection() {
             {/* Main Image */}
             <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#0B2C56]/10">
               <img
-                src={ABOUT_IMAGE_1}
-                alt="About Waqar-e-Makkah Travels"
+                src={brandImages.makkah}
+                alt="Pilgrims near Makkah for White Star Travel & Tours"
                 className="w-full h-112.5 md:h-137.5 object-cover"
               />
               <div className="absolute inset-0 bg-linear-to-t from-[#0B2C56]/40 via-transparent to-transparent"></div>
@@ -87,8 +77,8 @@ export default function AboutSection() {
             {/* Small Floating Image */}
             <div className="absolute -bottom-8 -right-8 md:-bottom-12 md:-right-12 w-40 h-52 md:w-52 md:h-64 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <img
-                src={ABOUT_IMAGE_2}
-                alt="Travel Experience"
+                src={brandImages.madina}
+                alt="Madinah travel experience"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -102,7 +92,7 @@ export default function AboutSection() {
                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
                   Years
                 </span>
-                <div className="w-10 h-1 bg-linear-to-r from-[#e95432] to-[#f7931e] rounded-full mt-2"></div>
+                <div className="w-10 h-1 bg-linear-to-r from-[#E95432] to-[#F3B43F] rounded-full mt-2"></div>
                 <span className="text-[8px] text-gray-400 uppercase tracking-widest mt-1">
                   Of Excellence
                 </span>
@@ -116,7 +106,7 @@ export default function AboutSection() {
                   <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-linear-to-br from-[#0B2C56] to-[#1069A8] flex items-center justify-center text-white text-xs font-bold border-2 border-white">
                     A
                   </div>
-                  <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-linear-to-br from-[#e95432] to-[#f7931e] flex items-center justify-center text-white text-xs font-bold border-2 border-white">
+                  <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-linear-to-br from-[#E95432] to-[#F3B43F] flex items-center justify-center text-white text-xs font-bold border-2 border-white">
                     S
                   </div>
                   <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-linear-to-br from-[#22c55e] to-[#16a34a] flex items-center justify-center text-white text-xs font-bold border-2 border-white">
@@ -137,7 +127,7 @@ export default function AboutSection() {
           <div className="order-1 lg:order-2">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0B2C56]/5 border border-[#0B2C56]/10 mb-6">
-              <span className="w-1.5 h-1.5 bg-[#e95432] rounded-full"></span>
+              <span className="w-1.5 h-1.5 bg-[#E95432] rounded-full"></span>
               <span className="text-[10px] font-bold text-[#0B2C56] uppercase tracking-[0.2em]">
                 About Us
               </span>
@@ -146,8 +136,8 @@ export default function AboutSection() {
             {/* Heading */}
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#0B2C56] leading-[1.1] mb-4">
               Best
-              <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#e95432] to-[#f7931e]">
-                Travel Agency
+              <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#E95432] to-[#F3B43F]">
+                Travel Partner
               </span>
             </h2>
 
@@ -157,16 +147,16 @@ export default function AboutSection() {
 
             {/* Description */}
             <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
-              We craft personalized travel experiences that go beyond the
-              ordinary. From exotic destinations to cultural immersions, every
-              journey with us is a story waiting to be told.
+              White Star Travel & Tours combines real-time group inventory,
+              Umrah package planning, airline coordination, and agent support
+              into one dependable travel experience.
             </p>
 
             {/* Highlights List */}
             <div className="space-y-2.5 mb-8">
               {highlights.map((item, idx) => (
                 <div key={idx} className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-[#e95432] shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-[#E95432] shrink-0 mt-0.5" />
                   <span className="text-gray-700 text-sm md:text-base font-medium">
                     {item}
                   </span>

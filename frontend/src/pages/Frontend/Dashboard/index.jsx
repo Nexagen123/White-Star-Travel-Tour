@@ -22,6 +22,7 @@ import {
 import axiosInstance from "../../../api/axios";
 // import { groupTypes } from "../../../data/groupTypes";
 import TopBar from "../../../components/TopBar/TopBar";
+import { fallbackOffers } from "../../../theme/brandImages";
 
 import madinaImg from "../../../assets/images/allgroupsbgg.jpg";
 import uaeImg from "../../../assets/images/uaebg.jpg";
@@ -55,32 +56,32 @@ const groupImages = {
 
 const groupStyles = {
   "All Groups": {
-    accent: "linear-gradient(135deg,#2563eb,#0891b2)",
+    accent: "linear-gradient(135deg,#0B2C56,#1069A8)",
     icon: Globe2,
     tag: "All routes",
   },
   "UAE (United Arab Emirates)": {
-    accent: "linear-gradient(135deg,#f59e0b,#e11d48)",
+    accent: "linear-gradient(135deg,#1069A8,#F3B43F)",
     icon: MapPinned,
     tag: "UAE seats",
   },
   "KSA (Saudia Arabia) one way": {
-    accent: "linear-gradient(135deg,#059669,#0f766e)",
+    accent: "linear-gradient(135deg,#0B2C56,#10A7D8)",
     icon: Compass,
     tag: "KSA one way",
   },
   "Kuwait (KWI)": {
-    accent: "linear-gradient(135deg,#7c3aed,#2563eb)",
+    accent: "linear-gradient(135deg,#05162E,#1069A8)",
     icon: Plane,
     tag: "KWI groups",
   },
   "Umrah Groups (Only Seats)": {
-    accent: "linear-gradient(135deg,#be123c,#f97316)",
+    accent: "linear-gradient(135deg,#E95432,#F3B43F)",
     icon: Landmark,
     tag: "Only seats",
   },
   "Umrah Packages": {
-    accent: "linear-gradient(135deg,#0e7490,#2563eb)",
+    accent: "linear-gradient(135deg,#0B2C56,#E95432)",
     icon: PackageCheck,
     tag: "Packages",
   },
@@ -107,22 +108,22 @@ const Dashboard = () => {
         label: "Confirmed Bookings",
         value: summary.confirmed,
         Icon: CircleCheck,
-        gradient: "linear-gradient(135deg,#047857,#10b981)",
-        shadow: "rgba(4,120,87,0.24)",
+        gradient: "linear-gradient(135deg,#0B2C56,#1069A8)",
+        shadow: "rgba(11,44,86,0.24)",
       },
       {
         label: "Hold Tickets",
         value: summary.hold,
         Icon: Clock3,
-        gradient: "linear-gradient(135deg,#b45309,#f59e0b)",
-        shadow: "rgba(180,83,9,0.24)",
+        gradient: "linear-gradient(135deg,#F3B43F,#E95432)",
+        shadow: "rgba(233,84,50,0.2)",
       },
       {
         label: "Cancelled",
         value: summary.cancelled,
         Icon: XCircle,
-        gradient: "linear-gradient(135deg,#b91c1c,#ef4444)",
-        shadow: "rgba(185,28,28,0.22)",
+        gradient: "linear-gradient(135deg,#E95432,#0B2C56)",
+        shadow: "rgba(11,44,86,0.2)",
       },
     ],
     [summary],
@@ -173,31 +174,38 @@ const Dashboard = () => {
     fetchIndexCards();
   }, []);
 
+  const visibleOffers = indexCards.length > 0 ? indexCards : fallbackOffers;
+
   useEffect(() => {
-    if (indexCards.length === 0) return;
+    if (visibleOffers.length === 0) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) =>
-        prev === indexCards.length - 1 ? 0 : prev + 1,
+        prev === visibleOffers.length - 1 ? 0 : prev + 1,
       );
     }, 4200);
     return () => clearInterval(interval);
-  }, [indexCards]);
+  }, [visibleOffers.length]);
 
   const handleCategoryClick = (group) => {
     navigate(`/dashboard/${group.path}`);
   };
 
   const nextSlide = () => {
-    if (indexCards.length === 0) return;
-    setCurrentIndex((prev) => (prev === indexCards.length - 1 ? 0 : prev + 1));
+    if (visibleOffers.length === 0) return;
+    setCurrentIndex((prev) =>
+      prev === visibleOffers.length - 1 ? 0 : prev + 1,
+    );
   };
 
   const prevSlide = () => {
-    if (indexCards.length === 0) return;
-    setCurrentIndex((prev) => (prev === 0 ? indexCards.length - 1 : prev - 1));
+    if (visibleOffers.length === 0) return;
+    setCurrentIndex((prev) =>
+      prev === 0 ? visibleOffers.length - 1 : prev - 1,
+    );
   };
 
-  const activeOffer = indexCards[currentIndex];
+  const visibleOffer =
+    visibleOffers[currentIndex % Math.max(visibleOffers.length, 1)];
 
   return (
     <>
@@ -244,7 +252,7 @@ const Dashboard = () => {
         className="w-full overflow-hidden relative flex items-center py-2.5"
         style={{
           background:
-            "linear-gradient(90deg,#0f172a 0%,#1d4ed8 48%,#0891b2 100%)",
+            "linear-gradient(90deg,#05162E 0%,#0B2C56 48%,#1069A8 100%)",
           boxShadow: "0 8px 24px rgba(15,23,42,0.2)",
         }}
       >
@@ -259,9 +267,9 @@ const Dashboard = () => {
         </span>
         <div className="flex-1 overflow-hidden">
           <span className="dashboard-marquee text-white text-sm font-medium tracking-wide">
-            Welcome to Waqar-e-Makkah Travel - We book comfort for you - Latest
-            Umrah, UAE, KSA and Kuwait seats are waiting - Book smarter and
-            travel with confidence
+            Welcome to White Star Travel & Tours - We book comfort for you -
+            Latest Umrah, UAE, KSA and Gulf seats are waiting - Book smarter
+            and travel with confidence
           </span>
         </div>
       </div>
@@ -270,7 +278,7 @@ const Dashboard = () => {
         className="w-full min-h-screen px-4 md:px-8 pb-12 pt-6"
         style={{
           background:
-            "linear-gradient(160deg,#f8fafc 0%,#eef6ff 52%,#f7f3ff 100%)",
+            "linear-gradient(160deg,#f8fafc 0%,#eef6ff 52%,#fff7e6 100%)",
         }}
       >
         <TopBar title="Agent Dashboard" />
@@ -376,7 +384,7 @@ const Dashboard = () => {
           <section>
             <div className="flex flex-wrap items-end justify-between gap-3 mb-5">
               <div>
-                <div className="flex items-center gap-2 text-blue-700">
+                <div className="flex items-center gap-2 text-[#1069A8]">
                   <Compass size={18} />
                   <span className="text-xs font-black uppercase tracking-widest">
                     Explore
@@ -402,7 +410,7 @@ const Dashboard = () => {
                     type="button"
                     key={group.value || group.path}
                     onClick={() => handleCategoryClick(group)}
-                    className="dashboard-rise group relative h-105 overflow-hidden rounded-lg text-left shadow-sm outline-none ring-1 ring-slate-200/80 transition duration-300 hover:-translate-y-1 hover:shadow-2xl focus-visible:ring-4 focus-visible:ring-blue-300"
+                    className="dashboard-rise group relative h-105 overflow-hidden rounded-lg text-left shadow-sm outline-none ring-1 ring-slate-200/80 transition duration-300 hover:-translate-y-1 hover:shadow-2xl focus-visible:ring-4 focus-visible:ring-[#10A7D8]/30"
                     style={{ animationDelay: `${index * 0.06}s` }}
                     aria-label={`Open ${group.label}`}
                   >
@@ -468,24 +476,18 @@ const Dashboard = () => {
                   <div className="h-3 bg-slate-100 rounded animate-pulse w-1/2" />
                 </div>
               </div>
-            ) : cardsError ? (
+            ) : cardsError && indexCards.length > 0 ? (
               <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-center text-sm font-semibold text-red-600 shadow-sm">
                 <AlertCircle className="mx-auto mb-3" size={26} />
                 {cardsError}
-              </div>
-            ) : indexCards.length === 0 ? (
-              <div className="rounded-lg border border-dashed border-slate-300 bg-white p-8 text-center text-sm font-semibold text-slate-500 shadow-sm">
-                <Gift className="mx-auto mb-3 text-slate-400" size={28} />
-                No special offers right now.
-                <span className="block text-slate-400">Check back soon.</span>
               </div>
             ) : (
               <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-2xl">
                 <div className="relative h-80 overflow-hidden">
                   <img
-                    key={activeOffer?._id || currentIndex}
-                    src={activeOffer?.image}
-                    alt={activeOffer?.title}
+                    key={visibleOffer?._id || currentIndex}
+                    src={visibleOffer?.image}
+                    alt={visibleOffer?.title}
                     className="h-full w-full object-cover"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/25 to-transparent" />
@@ -513,7 +515,7 @@ const Dashboard = () => {
                       Featured Offer
                     </div>
                     <h3 className="text-xl font-black leading-snug text-white drop-shadow">
-                      {activeOffer?.title}
+                      {visibleOffer?.title}
                     </h3>
                   </div>
                 </div>
@@ -521,8 +523,8 @@ const Dashboard = () => {
                 <div className="p-5">
                   <div className="flex items-center gap-2 text-sm font-semibold text-slate-500">
                     <CalendarDays size={16} />
-                    {activeOffer?.createdAt
-                      ? new Date(activeOffer.createdAt).toLocaleDateString(
+                    {visibleOffer?.createdAt
+                      ? new Date(visibleOffer.createdAt).toLocaleDateString(
                           "en-US",
                           {
                             year: "numeric",
@@ -534,7 +536,7 @@ const Dashboard = () => {
                   </div>
 
                   <div className="mt-5 flex items-center justify-center gap-2">
-                    {indexCards.map((offer, index) => (
+                    {visibleOffers.map((offer, index) => (
                       <button
                         type="button"
                         key={offer?._id || index}
@@ -544,7 +546,7 @@ const Dashboard = () => {
                           width: index === currentIndex ? 28 : 8,
                           background:
                             index === currentIndex
-                              ? "linear-gradient(90deg,#2563eb,#0891b2)"
+                              ? "linear-gradient(90deg,#0B2C56,#1069A8)"
                               : "#cbd5e1",
                         }}
                         aria-label={`Show offer ${index + 1}`}

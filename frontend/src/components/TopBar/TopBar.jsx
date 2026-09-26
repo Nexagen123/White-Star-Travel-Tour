@@ -2,26 +2,25 @@ import React from "react";
 import { theme } from "../../theme/theme";
 import {
   LayoutDashboard,
-  ChevronRight,
   Calendar,
   Users,
-  Clock,
 } from "lucide-react";
+import { brandImages } from "../../theme/brandImages";
 
 export default function TopBar({
   title,
   subtitle,
   showStatus = true,
   showStats = false,
+  image = brandImages.heroOne,
 }) {
-  // Beautiful gradient with modern color palette
-  const primaryGradient = `linear-gradient(145deg, ${theme.colors.primary} 0%, ${theme.colors.primaryDark || theme.colors.primary} 40%, ${theme.colors.primaryLight} 100%)`;
-
   return (
     <div
       className="relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-3xl"
       style={{
-        background: primaryGradient,
+        background: `linear-gradient(145deg, rgba(11,44,86,0.93) 0%, rgba(5,22,46,0.86) 46%, rgba(16,105,168,0.82) 100%), url(${image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         marginBottom: theme.spacing.lg || "24px",
         border: "1px solid rgba(255,255,255,0.1)",
       }}

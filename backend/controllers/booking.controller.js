@@ -26,10 +26,10 @@ import {
 const isLocalGroup = (groupId) => mongoose.Types.ObjectId.isValid(groupId);
 const normalizeGroupId = (groupId) => groupId?.toString();
 const WAQAR_E_MAKKAH_BOOKING_CONTACT = {
-  agentName: "Waqar-e-Makkah",
-  agencyName: "Waqar-e-Makkah",
-  email: "waqaremakkah@gmail.com",
-  mobile: "+92 333 7736611",
+  agentName: "White Start Agent",
+  agencyName: "White Start Agent",
+  email: "mirfanawais119@gmail.com",
+  mobile: "0300-8458808",
 };
 
 /**

@@ -115,7 +115,7 @@ export default function ManageSectors() {
 
     return (
         <>
-            <PageMeta title="All Sectors - Waqar-e-Makkah Travel" description="View all sectors list" />
+            <PageMeta title="All Sectors - White Start Travel & Tour" description="View all sectors list" />
 
             <div className="mb-6">
                 <PageBreadCrumb pageTitle="All Sectors" />

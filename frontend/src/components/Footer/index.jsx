@@ -167,34 +167,34 @@ export default function Footer({ user }) {
               </h3>
               <div className="space-y-4">
                 <a
-                  href="https://wa.me/+923337736611"
+                  href="https://wa.me/+920008458808"
                   className="group flex items-center gap-3 text-gray-400 hover:text-white transition-colors"
                 >
                   <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
                     <FaWhatsapp size={13} />
                   </div>
-                  <span className="text-xs font-medium">0333-7736611</span>
+                  <span className="text-xs font-medium">0300-8458808</span>
                 </a>
 
                 <a
-                  href="tel:+923447736611"
+                  href="tel:0632240808"
                   className="group flex items-center gap-3 text-gray-400 hover:text-white transition-colors"
                 >
                   <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
                     <FaPhoneAlt size={12} />
                   </div>
-                  <span className="text-xs font-medium">0344-7736611</span>
+                  <span className="text-xs font-medium">063-2240808</span>
                 </a>
 
                 <a
-                  href="mailto:waqaremakkah@gmail.com"
+                  href="mailto:mirfanawais119@gmail.com"
                   className="group flex items-center gap-3 text-gray-400 hover:text-white transition-colors min-w-0"
                 >
                   <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
                     <IoMail size={13} />
                   </div>
                   <span className="text-xs font-medium truncate">
-                    waqaremakkah@gmail.com
+                    mirfanawais119@gmail.com
                   </span>
                 </a>
 
@@ -204,12 +204,12 @@ export default function Footer({ user }) {
                     <IoLocationSharp size={14} />
                   </div>
                   <span className="text-xs font-medium leading-relaxed">
-                    Opposite General Bus Stand, Faisalabad Road, Sumundri.
+                    Highway Road Faqirwali Distt, Bahawalnagar
                   </span>
                 </div>
 
                 {/* Branch Address 2 */}
-                <div className="flex items-start gap-3 text-gray-400">
+                {/* <div className="flex items-start gap-3 text-gray-400">
                   <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0 mt-0.5">
                     <IoLocationSharp size={14} />
                   </div>
@@ -217,7 +217,7 @@ export default function Footer({ user }) {
                     Office # 130, Ground floor, City Mall Chen One Road
                     Faisalabad.
                   </span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

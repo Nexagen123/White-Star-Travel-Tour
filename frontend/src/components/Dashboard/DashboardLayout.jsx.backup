@@ -335,7 +335,7 @@ const DashboardLayout = ({ user, handleLogout }) => {
             {sidebarOpen ? <FaTimes /> : <FaBars />}
           </button>
           {/* <div className="header-title">
-            <h1>Dashboard - Waqar-e-Makkah Travels </h1> 
+            <h1>Dashboard - White Start Travel & Tours </h1> 
           </div> */}
           <div
             className="header-user"

@@ -90,7 +90,7 @@ export default function ChooseUsSection() {
             className="text-2xl md:text-3xl font-black tracking-tight uppercase"
             style={{ color: theme?.colors?.primary || "#0B2C56" }}
           >
-            Waqar-e-Makkah Advantage
+            White Star Advantage
           </h3>
           <p className="text-gray-400 text-xs tracking-wider uppercase font-semibold mt-1">
             Premium Travel Solutions & Infrastructure

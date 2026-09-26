@@ -12,6 +12,7 @@ export const theme = {
     danger: "#C63E1F",
     background: "#f8fafc",
     backgroundDark: "#f1f5f9",
+    lightBg: "#F5F8FC",
     card: "#ffffff",
     border: "#e2e8f0",
     borderDark: "#cbd5e1",

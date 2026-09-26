@@ -629,6 +629,6 @@ export const generateUmrahPackagesPDF = async (packages, options = {}) => {
     }
   }
 
-  doc.save("Waqare_Makkah_Umrah_Offers.pdf");
+  doc.save("White_Star_Umrah_Offers.pdf");
   return true;
 };

@@ -422,7 +422,7 @@ const buildGroupCopyText = (group: ApiGroup): string => {
     const footer =
         `*ALL GROUPS ARE NON REFUNDABLE AND NON CHANGEABLE*
 =======================
-Waqar-e-Makkah Travel
+White Start Travel & Tour
 Mobile: 0344-7736611
 Address: Opposite General Bus Stand, Faisalabad Road, Sumundri.
 Website: https://waqaremakkah.com/`;

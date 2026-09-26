@@ -2,106 +2,31 @@ import React, { useState } from "react";
 import {
   Plane,
   Hotel,
-  Utensils,
   Camera,
-  Sun,
   Mountain,
   Umbrella,
-  Ship,
   MapPin,
   Star,
   Heart,
-  ChevronLeft,
-  ChevronRight,
   Clock,
   Users,
   Globe,
 } from "lucide-react";
-
-// Global image variables - change these URLs as needed
-const DESTINATION_1 =
-  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800";
-const DESTINATION_2 =
-  "https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?auto=format&fit=crop&q=80&w=800";
-const DESTINATION_3 =
-  "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800";
-const DESTINATION_4 =
-  "https://www.thetravelmagazine.net/wp-content/uploads/Bodu-1170x878.jpg";
-const DESTINATION_5 =
-  "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800";
-const DESTINATION_6 =
-  "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800";
+import { featuredTravelImages } from "../../theme/brandImages";
 
 export default function DestinationsSection() {
   const [activeTab, setActiveTab] = useState("all");
 
-  const destinations = [
-    {
-      id: 1,
-      title: "Bali, Indonesia",
-      location: "Southeast Asia",
-      image: DESTINATION_1,
-      price: "$1,299",
-      rating: 4.9,
-      reviews: 234,
-      category: "beach",
-      duration: "7 Days",
-      groupSize: "12 People",
-      tags: ["Beach", "Culture", "Adventure"],
-    },
-    {
-      id: 2,
-      title: "Dubai, UAE",
-      location: "Middle East",
-      image: DESTINATION_2,
-      price: "$1,899",
-      rating: 4.8,
-      reviews: 189,
-      category: "luxury",
-      duration: "5 Days",
-      groupSize: "8 People",
-      tags: ["Luxury", "Shopping", "Desert"],
-    },
-    {
-      id: 3,
-      title: "Swiss Alps",
-      location: "Europe",
-      image: DESTINATION_3,
-      price: "$2,499",
-      rating: 4.9,
-      reviews: 312,
-      category: "adventure",
-      duration: "10 Days",
-      groupSize: "10 People",
-      tags: ["Mountains", "Snow", "Nature"],
-    },
-    {
-      id: 4,
-      title: "Maldives",
-      location: "Indian Ocean",
-      image: DESTINATION_4,
-      price: "$3,299",
-      rating: 5.0,
-      reviews: 456,
-      category: "beach",
-      duration: "7 Days",
-      groupSize: "6 People",
-      tags: ["Island", "Water", "Luxury"],
-    },
-    {
-      id: 5,
-      title: "Tokyo, Japan",
-      location: "East Asia",
-      image: DESTINATION_5,
-      price: "$2,199",
-      rating: 4.7,
-      reviews: 278,
-      category: "culture",
-      duration: "8 Days",
-      groupSize: "14 People",
-      tags: ["Culture", "Food", "Tech"],
-    },
-  ];
+  const destinations = featuredTravelImages.map((item, index) => ({
+    ...item,
+    id: item.title,
+    price: "Live fares",
+    rating: [4.9, 4.8, 4.7, 4.9, 4.8, 4.7, 4.8, 4.6][index] || 4.8,
+    reviews: [420, 390, 260, 310, 180, 175, 160, 210][index] || 150,
+    duration: ["14-28 Days", "14-28 Days", "One Way", "3-7 Days"][index % 4],
+    groupSize: "Group seats",
+    tags: [item.tag, item.location, "Agent rates"],
+  }));
 
   const categories = [
     {
@@ -109,14 +34,14 @@ export default function DestinationsSection() {
       label: "All Destinations",
       icon: <Globe className="w-4 h-4" />,
     },
-    { id: "beach", label: "Beach", icon: <Umbrella className="w-4 h-4" /> },
+    { id: "umrah", label: "Umrah", icon: <Umbrella className="w-4 h-4" /> },
     {
-      id: "adventure",
-      label: "Adventure",
+      id: "gulf",
+      label: "Gulf",
       icon: <Mountain className="w-4 h-4" />,
     },
-    { id: "luxury", label: "Luxury", icon: <Star className="w-4 h-4" /> },
-    { id: "culture", label: "Culture", icon: <Camera className="w-4 h-4" /> },
+    { id: "ksa", label: "KSA", icon: <Star className="w-4 h-4" /> },
+    { id: "world", label: "World", icon: <Camera className="w-4 h-4" /> },
   ];
 
   const filteredDestinations =
@@ -127,14 +52,14 @@ export default function DestinationsSection() {
   return (
     <section className="relative py-24 md:py-32 bg-white overflow-hidden">
       {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-[#e95432]/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-[#E95432]/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#0B2C56]/5 rounded-full blur-3xl"></div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0B2C56]/5 border border-[#0B2C56]/10 mb-4">
-            <span className="w-1.5 h-1.5 bg-[#e95432] rounded-full"></span>
+            <span className="w-1.5 h-1.5 bg-[#E95432] rounded-full"></span>
             <span className="text-[10px] font-bold text-[#0B2C56] uppercase tracking-[0.2em]">
               Top Picks
             </span>
@@ -142,14 +67,14 @@ export default function DestinationsSection() {
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#0B2C56] leading-[1.1] mb-4">
             Popular
-            <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#e95432] to-[#f7931e]">
+            <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#E95432] to-[#F3B43F]">
               Destinations
             </span>
           </h2>
 
           <p className="text-gray-600 text-base md:text-lg">
-            Discover the world's most amazing places with our curated selection
-            of premium destinations
+            Browse real routes and destination imagery from the White Star
+            travel network.
           </p>
         </div>
 
@@ -201,7 +126,7 @@ export default function DestinationsSection() {
                 </div>
 
                 {/* Wishlist Button */}
-                <button className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm p-2.5 rounded-full shadow-lg hover:bg-[#e95432] hover:text-white transition-all duration-300">
+                <button className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm p-2.5 rounded-full shadow-lg hover:bg-[#E95432] hover:text-white transition-all duration-300">
                   <Heart className="w-4 h-4" />
                 </button>
 
@@ -241,12 +166,12 @@ export default function DestinationsSection() {
           {[
             { icon: <Plane className="w-5 h-5" />, label: "Flight Booking" },
             { icon: <Hotel className="w-5 h-5" />, label: "Hotel Stays" },
-            { icon: <Utensils className="w-5 h-5" />, label: "Fine Dining" },
-            { icon: <Ship className="w-5 h-5" />, label: "Cruise Tours" },
+            { icon: <Clock className="w-5 h-5" />, label: "Fast Updates" },
+            { icon: <Users className="w-5 h-5" />, label: "Group Seats" },
           ].map((service, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-3 p-4 bg-gray-50/80 rounded-2xl border border-gray-100 hover:bg-white hover:border-[#e95432]/30 hover:shadow-lg transition-all duration-300 cursor-pointer group"
+              className="flex items-center gap-3 p-4 bg-gray-50/80 rounded-2xl border border-gray-100 hover:bg-white hover:border-[#E95432]/30 hover:shadow-lg transition-all duration-300 cursor-pointer group"
             >
               <div className="p-2.5 bg-linear-to-br from-[#0B2C56]/10 to-[#E95432]/10 rounded-xl text-[#0B2C56] group-hover:scale-110 transition-transform">
                 {service.icon}

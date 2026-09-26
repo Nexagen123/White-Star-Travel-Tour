@@ -165,10 +165,10 @@ const getPasswordResetEmailHTML = (resetLink, userName) => {
             </ul>
           </div>
           <p>If you have any questions or concerns, please contact our support team.</p>
-          <p>Best regards,<br><strong>Waqar-e-Makkah Travel  Team</strong></p>
+          <p>Best regards,<br><strong>White Start Travel & Tour  Team</strong></p>
         </div>
         <div class="footer">
-          <p>&copy; ${new Date().getFullYear()} Waqar-e-Makkah Travel . All rights reserved.</p>
+          <p>&copy; ${new Date().getFullYear()} White Start Travel & Tour . All rights reserved.</p>
           <p>This is an automated message, please do not reply to this email.</p>
         </div>
       </div>
@@ -193,13 +193,13 @@ export const sendPasswordResetEmail = async (
 
     const mailOptions = {
       from: {
-        name: "Waqar-e-Makkah Travel ",
+        name: "White Start Travel & Tour ",
         address: process.env.EMAIL_USER,
       },
       to: email,
-      subject: "Password Reset Request - Waqar-e-Makkah Travel ",
+      subject: "Password Reset Request - White Start Travel & Tour ",
       html: getPasswordResetEmailHTML(resetLink, userName),
-      text: `Hello ${userName},\n\nWe received a request to reset your password.\n\nPlease click the following link to reset your password:\n${resetLink}\n\nThis link will expire in 1 hour.\n\nIf you didn't request this, please ignore this email.\n\nBest regards,\nWaqar-e-Makkah Travel  Team`,
+      text: `Hello ${userName},\n\nWe received a request to reset your password.\n\nPlease click the following link to reset your password:\n${resetLink}\n\nThis link will expire in 1 hour.\n\nIf you didn't request this, please ignore this email.\n\nBest regards,\nWhite Start Travel & Tour  Team`,
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -321,11 +321,11 @@ const getCredentialsEmailHTML = (
     <body>
       <div class="container">
         <div class="header">
-          <h1>🎉 Welcome to Waqar-e-Makkah Travel !</h1>
+          <h1>🎉 Welcome to White Start Travel & Tour !</h1>
         </div>
         <div class="content">
           <p>Hello <strong>${userName}</strong>,</p>
-          <p>Welcome to Waqar-e-Makkah Travel ! Your agency account has been created successfully.</p>
+          <p>Welcome to White Start Travel & Tour ! Your agency account has been created successfully.</p>
           <p><strong>Company:</strong> ${companyName}</p>
           
           <div class="credentials-box">
@@ -362,10 +362,10 @@ const getCredentialsEmailHTML = (
           </div>
 
           <p>If you have any questions or need assistance, please don't hesitate to contact our support team.</p>
-          <p>Best regards,<br><strong>Waqar-e-Makkah Travel  Team</strong></p>
+          <p>Best regards,<br><strong>White Start Travel & Tour  Team</strong></p>
         </div>
         <div class="footer">
-          <p>&copy; ${new Date().getFullYear()} Waqar-e-Makkah Travel . All rights reserved.</p>
+          <p>&copy; ${new Date().getFullYear()} White Start Travel & Tour . All rights reserved.</p>
           <p>This is an automated message, please do not reply to this email.</p>
         </div>
       </div>
@@ -403,11 +403,11 @@ export const sendCredentialsEmail = async (
 
     const mailOptions = {
       from: {
-        name: "Waqar-e-Makkah Travel ",
+        name: "White Start Travel & Tour ",
         address: process.env.EMAIL_USER,
       },
       to: email,
-      subject: "Your Agent Credentials - Waqar-e-Makkah Travel ",
+      subject: "Your Agent Credentials - White Start Travel & Tour ",
       html: getCredentialsEmailHTML(
         agentCode,
         email,
@@ -415,7 +415,7 @@ export const sendCredentialsEmail = async (
         userName,
         companyName,
       ),
-      text: `Hello ${userName},\n\nWelcome to Waqar-e-Makkah Travel ! Your agency account has been created successfully.\n\nCompany: ${companyName}\n\nYour Login Credentials:\nAgent Code: ${agentCode}\nEmail: ${email}\nPassword: ${password}\n\nLogin URL: ${"https://waqaremakkah.com"}\n\nSecurity Tips:\n- Keep your credentials safe and secure\n- Do not share your password with anyone\n- We recommend changing your password after first login\n\nBest regards,\nWaqar-e-Makkah Travel `,
+      text: `Hello ${userName},\n\nWelcome to White Start Travel & Tour ! Your agency account has been created successfully.\n\nCompany: ${companyName}\n\nYour Login Credentials:\nAgent Code: ${agentCode}\nEmail: ${email}\nPassword: ${password}\n\nLogin URL: ${"https://waqaremakkah.com"}\n\nSecurity Tips:\n- Keep your credentials safe and secure\n- Do not share your password with anyone\n- We recommend changing your password after first login\n\nBest regards,\nWhite Start Travel & Tour `,
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -547,7 +547,7 @@ const getAdminCredentialsEmailHTML = (
     <body>
       <div class="container">
         <div class="header">
-          <h1>Welcome to Waqar-e-Makkah Travel</h1>
+          <h1>Welcome to White Start Travel & Tour</h1>
         </div>
         <div class="content">
           <p>Hello <strong>${userName}</strong>,</p>
@@ -580,10 +580,10 @@ const getAdminCredentialsEmailHTML = (
             </ul>
           </div>
 
-          <p>Best regards,<br><strong>Waqar-e-Makkah Travel Team</strong></p>
+          <p>Best regards,<br><strong>White Start Travel & Tour Team</strong></p>
         </div>
         <div class="footer">
-          <p>&copy; ${new Date().getFullYear()} Waqar-e-Makkah Travel. All rights reserved.</p>
+          <p>&copy; ${new Date().getFullYear()} White Start Travel & Tour. All rights reserved.</p>
           <p>This is an automated message, please do not reply to this email.</p>
         </div>
       </div>
@@ -615,18 +615,18 @@ export const sendAdminCredentialsEmail = async (
     const loginUrl = getAdminCredentialsLoginUrl();
     const mailOptions = {
       from: {
-        name: "Waqar-e-Makkah Travel ",
+        name: "White Start Travel & Tour ",
         address: process.env.EMAIL_USER,
       },
       to: email,
-      subject: "Your Admin Portal Credentials - Waqar-e-Makkah Travel",
+      subject: "Your Admin Portal Credentials - White Start Travel & Tour",
       html: getAdminCredentialsEmailHTML(
         email,
         password,
         userName,
         companyName,
       ),
-      text: `Hello ${userName},\n\nYour admin portal sub-user account credentials are ready.\n\nCompany: ${companyName}\n\nYour Login Credentials:\nEmail: ${email}\nPassword: ${password}\n\nLogin URL: ${loginUrl}\n\nSecurity Tips:\n- Keep your credentials safe and secure\n- Do not share your password with anyone\n- We recommend changing your password after first login\n\nBest regards,\nWaqar-e-Makkah Travel`,
+      text: `Hello ${userName},\n\nYour admin portal sub-user account credentials are ready.\n\nCompany: ${companyName}\n\nYour Login Credentials:\nEmail: ${email}\nPassword: ${password}\n\nLogin URL: ${loginUrl}\n\nSecurity Tips:\n- Keep your credentials safe and secure\n- Do not share your password with anyone\n- We recommend changing your password after first login\n\nBest regards,\nWhite Start Travel & Tour`,
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -684,7 +684,7 @@ export const getAgentRegistrationEmailHTML = (name = "Agent") => {
             <tr>
               <td style="background:#012A36; padding:25px; text-align:center;">
                 <h1 style="color:#ffffff; margin:0; font-size:24px;">
-                  Waqar-e-Makkah Travel
+                  White Start Travel & Tour
                 </h1>
               </td>
             </tr>
@@ -700,7 +700,7 @@ export const getAgentRegistrationEmailHTML = (name = "Agent") => {
                 </p>
 
                 <p style="font-size:16px; line-height:1.6;">
-                  Thank you for registering as an agent with Waqar-e-Makkah Travel.
+                  Thank you for registering as an agent with White Start Travel & Tour.
                 </p>
 
                 <p style="font-size:16px; line-height:1.6;">
@@ -715,14 +715,14 @@ export const getAgentRegistrationEmailHTML = (name = "Agent") => {
 
                 <p style="font-size:16px; line-height:1.6; margin-bottom:0;">
                   Best regards,<br />
-                  <strong>Waqar-e-Makkah Travel Team</strong>
+                  <strong>White Start Travel & Tour Team</strong>
                 </p>
               </td>
             </tr>
 
             <tr>
               <td style="background:#f1f1f1; padding:15px; text-align:center; color:#777777; font-size:13px;">
-                © ${new Date().getFullYear()} Waqar-e-Makkah Travel. All rights reserved.
+                © ${new Date().getFullYear()} White Start Travel & Tour. All rights reserved.
               </td>
             </tr>
 
@@ -740,7 +740,7 @@ export const sendAgentRegistrationEmail = async (email, name = "Agent") => {
 
     const mailOptions = {
       from: {
-        name: "Waqar-e-Makkah Travel",
+        name: "White Start Travel & Tour",
         address: process.env.EMAIL_USER,
       },
       to: email,
@@ -748,14 +748,14 @@ export const sendAgentRegistrationEmail = async (email, name = "Agent") => {
       html: getAgentRegistrationEmailHTML(name),
       text: `Hello ${name},
 
-Thank you for registering as an agent with Waqar-e-Makkah Travel.
+Thank you for registering as an agent with White Start Travel & Tour.
 
 Your account has been created successfully, but it is currently waiting for admin approval.
 
 Please wait for the admin to activate your account. Once your account is activated, you will be able to log in and use your agent portal.
 
 Best regards,
-Waqar-e-Makkah Travel Team`,
+White Start Travel & Tour Team`,
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -825,7 +825,7 @@ export const getBookingStatusUpdateEmailHTML = ({
             <tr>
               <td style="background:#012A36; padding:25px; text-align:center;">
                 <h1 style="color:#ffffff; margin:0; font-size:24px;">
-                  Waqar-e-Makkah Travel
+                  White Start Travel & Tour
                 </h1>
               </td>
             </tr>
@@ -887,14 +887,14 @@ export const getBookingStatusUpdateEmailHTML = ({
 
                 <p style="font-size:16px; line-height:1.6; margin-bottom:0;">
                   Best regards,<br />
-                  <strong>Waqar-e-Makkah Travel Team</strong>
+                  <strong>White Start Travel & Tour Team</strong>
                 </p>
               </td>
             </tr>
 
             <tr>
               <td style="background:#f1f1f1; padding:15px; text-align:center; color:#777777; font-size:13px;">
-                © ${new Date().getFullYear()} Waqar-e-Makkah Travel. All rights reserved.
+                © ${new Date().getFullYear()} White Start Travel & Tour. All rights reserved.
               </td>
             </tr>
 
@@ -920,7 +920,7 @@ export const sendBookingStatusUpdateEmail = async ({
 
     const mailOptions = {
       from: {
-        name: "Waqar-e-Makkah Travel",
+        name: "White Start Travel & Tour",
         address: process.env.EMAIL_USER,
       },
       to: email,
@@ -942,7 +942,7 @@ New Status: ${newStatus}
 ${notes ? `Notes: ${notes}` : ""}
 
 Best regards,
-Waqar-e-Makkah Travel Team`,
+White Start Travel & Tour Team`,
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -1019,7 +1019,7 @@ export const getAgentStatusUpdateEmailHTML = ({
             <tr>
               <td style="background:#012A36; padding:25px; text-align:center;">
                 <h1 style="color:#ffffff; margin:0; font-size:24px;">
-                  Waqar-e-Makkah Travel
+                  White Start Travel & Tour
                 </h1>
               </td>
             </tr>
@@ -1081,14 +1081,14 @@ export const getAgentStatusUpdateEmailHTML = ({
 
                 <p style="font-size:16px; line-height:1.6; margin-bottom:0;">
                   Best regards,<br />
-                  <strong>Waqar-e-Makkah Travel Team</strong>
+                  <strong>White Start Travel & Tour Team</strong>
                 </p>
               </td>
             </tr>
 
             <tr>
               <td style="background:#f1f1f1; padding:15px; text-align:center; color:#777777; font-size:13px;">
-                © ${new Date().getFullYear()} Waqar-e-Makkah Travel. All rights reserved.
+                © ${new Date().getFullYear()} White Start Travel & Tour. All rights reserved.
               </td>
             </tr>
 
@@ -1119,7 +1119,7 @@ export const sendAgentStatusUpdateEmail = async ({
 
     const mailOptions = {
       from: {
-        name: "Waqar-e-Makkah Travel",
+        name: "White Start Travel & Tour",
         address: process.env.EMAIL_USER,
       },
       to: email,
@@ -1147,7 +1147,7 @@ ${
 }
 
 Best regards,
-Waqar-e-Makkah Travel Team`,
+White Start Travel & Tour Team`,
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -1196,7 +1196,7 @@ export const getAdminAgencyRegistrationEmailHTML = ({
             <tr>
               <td style="background:#012A36; padding:25px; text-align:center;">
                 <h1 style="color:#ffffff; margin:0; font-size:24px;">
-                  Waqar-e-Makkah Travel
+                  White Start Travel & Tour
                 </h1>
               </td>
             </tr>
@@ -1293,14 +1293,14 @@ export const getAdminAgencyRegistrationEmailHTML = ({
 
                 <p style="font-size:16px; line-height:1.6; margin-bottom:0;">
                   Best regards,<br />
-                  <strong>Waqar-e-Makkah Travel System</strong>
+                  <strong>White Start Travel & Tour System</strong>
                 </p>
               </td>
             </tr>
 
             <tr>
               <td style="background:#f1f1f1; padding:15px; text-align:center; color:#777777; font-size:13px;">
-                © ${new Date().getFullYear()} Waqar-e-Makkah Travel. All rights reserved.
+                © ${new Date().getFullYear()} White Start Travel & Tour. All rights reserved.
               </td>
             </tr>
 
@@ -1340,7 +1340,7 @@ export const sendAdminAgencyRegistrationEmail = async ({
 
     const mailOptions = {
       from: {
-        name: "Waqar-e-Makkah Travel",
+        name: "White Start Travel & Tour",
         address: process.env.EMAIL_USER,
       },
       to: adminEmail,
@@ -1369,7 +1369,7 @@ Status: ${status || "Pending"}
 Please review this agency account and activate it if approved.
 
 Best regards,
-Waqar-e-Makkah Travel System`,
+White Start Travel & Tour System`,
     };
 
     const info = await transporter.sendMail(mailOptions);

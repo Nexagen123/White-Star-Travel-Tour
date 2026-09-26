@@ -672,10 +672,10 @@ const Ledger = () => {
               />
               <div className="agent-ledger-print-company-text">
                 <strong>{accountName.toUpperCase()}</strong>
-                <div>Waqar e Makkah</div>
-                <div>Email: waqaremakkah@gmail.com</div>
+                <div>White Star Travel & Tours</div>
+                <div>Email: mirfanawais119@gmail.com</div>
                 <div>
-                  Account statement generated from Waqar e Makkah portal
+                  Account statement generated from White Star Travel & Tours portal
                 </div>
               </div>
             </div>
@@ -853,9 +853,9 @@ const Ledger = () => {
               <img src={logo} alt="Company logo" />
               <div>
                 <h1>{accountName.toUpperCase()}</h1>
-                <p>Waqar e Makkah</p>
-                <p>Email: waqaremakkah@gmail.com</p>
-                <p>Account statement generated from Waqar e Makkah portal</p>
+                <p>White Star Travel & Tours</p>
+                <p>Email: mirfanawais119@gmail.com</p>
+                <p>Account statement generated from White Star Travel & Tours portal</p>
               </div>
             </div>
 

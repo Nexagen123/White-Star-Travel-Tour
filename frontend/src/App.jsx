@@ -5,7 +5,7 @@ import Routes from "./pages/Routes.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const WHATSAPP_URL = "https://wa.me/+923337736611";
+const WHATSAPP_URL = "https://wa.me/+920008458808";
 
 export default function App() {
   const [showScrollButton, setShowScrollButton] = useState(false);

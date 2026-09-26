@@ -6,8 +6,8 @@ export default function SignIn() {
   return (
     <>
       <PageMeta
-        title="Waqar-e-Makkah Travel SignIn Dashboard"
-        description="This is Admin SignIn Dashboard page for Waqar-e-Makkah Travel"
+        title="White Start Travel & Tour SignIn Dashboard"
+        description="This is Admin SignIn Dashboard page for White Start Travel & Tour"
       />
       <AuthLayout>
         <SignInForm />

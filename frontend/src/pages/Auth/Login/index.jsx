@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axiosInstance from "../../../api/axios";
 import { toast } from "react-toastify";
 import logo from "../../../assets/images/whitestarlogo.png";
-import loginBg from "../../../assets/images/loginbggg.jpg";
+import { brandImages } from "../../../theme/brandImages";
 import { Mail, Lock, Phone, ShieldCheck } from "lucide-react";
 import { theme } from "../../../theme/theme";
 
@@ -143,7 +143,7 @@ const Login = ({ onLogin }) => {
             height: "60px",
           }}
           src={logo}
-          alt="Waqar-e-Makkah Travels"
+          alt="White Star Travel & Tours"
           className="h-10 w-auto object-contain"
         />
       </Link>
@@ -152,7 +152,7 @@ const Login = ({ onLogin }) => {
       <div className="w-full lg:w-5/12 relative min-h-90 lg:min-h-0 flex flex-col justify-end p-8 md:p-16 text-white overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
-          style={{ backgroundImage: `url(${loginBg})` }}
+          style={{ backgroundImage: `url(${brandImages.makkahPackage})` }}
         />
         <div className="absolute inset-0 bg-neutral-900/75" />
 
@@ -161,11 +161,11 @@ const Login = ({ onLogin }) => {
             Enterprise Console
           </span>
           <h1 className="text-3xl md:text-4xl font-black tracking-tight leading-tight pt-2">
-            Waqar-e-Makkah Travels
+            White Star Travel & Tours
           </h1>
           <p className="text-white/70 text-xs leading-relaxed font-medium border-t border-white/10 pt-4">
-            Consolidated platform administration and structural B2B service
-            logic for registered corporate agent networks.
+            Secure access for agents to manage bookings, browse live seats,
+            and coordinate Umrah and international travel requests.
           </p>
         </div>
       </div>
