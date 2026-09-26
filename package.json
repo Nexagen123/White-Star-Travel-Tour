@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "dev": "concurrently -n backend,admin,frontend -c yellow,blue,green \"npm:dev:backend\" \"npm:dev:admin\" \"npm:dev:frontend\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:admin": "npm run dev --prefix admin",
+    "dev:frontend": "npm run dev --prefix frontend"
+  },
+  "dependencies": {
+    "react-icons": "^5.6.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
