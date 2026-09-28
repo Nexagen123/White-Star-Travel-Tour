@@ -49,7 +49,7 @@ function OldHeader({ user, handleLogout }) {
             {user && (
               <Link to="/" className="flex items-center">
                 <img
-                  style={{ maxHeight: "100px" }}
+                  style={{ height: "200px!" }}
                   src={logo}
                   alt="White Star Travel & Tours"
                   className="object-contain"

@@ -1,7 +1,8 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUpRight,
   Plane,
   Moon,
   Shield,
@@ -20,7 +21,6 @@ import service3 from "../../assets/images/service3.webp";
 import service4 from "../../assets/images/service4.webp";
 import service5 from "../../assets/images/service5.webp";
 import service6 from "../../assets/images/service6.webp";
-import { theme } from "../../theme/theme";
 
 const services = [
   {
@@ -91,279 +91,253 @@ const services = [
   },
 ];
 
+const stats = [
+  { num: "50k+", label: "Tickets Sold" },
+  { num: "12k+", label: "Happy Clients" },
+  { num: "98%", label: "Satisfaction" },
+];
+
+// Distance between two card starts (card width + flex gap), read from the DOM
+const getStep = (el) => {
+  const card = el?.firstElementChild;
+  if (!card) return 0;
+  const gap = parseFloat(getComputedStyle(el).columnGap) || 0;
+  return card.offsetWidth + gap;
+};
+
 export default function ServicesSection() {
-  const scrollContainerRef = useRef(null);
-  const [isHovering, setIsHovering] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+  const scrollRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [maxIndex, setMaxIndex] = useState(services.length - 1);
 
-  const scroll = (direction) => {
-    if (scrollContainerRef.current) {
-      const cardWidth = 320; // Card width + gap
-      const scrollAmount = direction === "left" ? -cardWidth : cardWidth;
+  // Sync active dot + number of reachable positions with the real scroll state
+  const measure = useCallback(() => {
+    const el = scrollRef.current;
+    const step = getStep(el);
+    if (!el || !step) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    const max = Math.max(0, Math.round(maxScroll / step));
+    const atEnd = el.scrollLeft >= maxScroll - 4;
+    setMaxIndex(max);
+    setActiveIndex(atEnd ? max : Math.min(max, Math.round(el.scrollLeft / step)));
+  }, []);
 
-      scrollContainerRef.current.scrollBy({
-        left: scrollAmount,
-        behavior: "smooth",
-      });
-
-      // Update current index
-      const newIndex =
-        direction === "left"
-          ? Math.max(0, currentIndex - 1)
-          : Math.min(services.length - 1, currentIndex + 1);
-      setCurrentIndex(newIndex);
+  const go = useCallback((direction) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    if (direction > 0 && el.scrollLeft >= maxScroll - 4) {
+      el.scrollTo({ left: 0, behavior: "smooth" });
+    } else if (direction < 0 && el.scrollLeft <= 4) {
+      el.scrollTo({ left: maxScroll, behavior: "smooth" });
+    } else {
+      el.scrollBy({ left: direction * getStep(el), behavior: "smooth" });
     }
+  }, []);
+
+  const goToIndex = (index) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollTo({ left: index * getStep(el), behavior: "smooth" });
   };
 
-  // Auto-scroll functionality
+  // Auto-scroll
   useEffect(() => {
-    if (!isAutoScrolling || isHovering) return;
-
-    const interval = setInterval(() => {
-      if (scrollContainerRef.current) {
-        const maxScroll =
-          scrollContainerRef.current.scrollWidth -
-          scrollContainerRef.current.clientWidth;
-        const currentScroll = scrollContainerRef.current.scrollLeft;
-
-        if (currentScroll >= maxScroll - 10) {
-          // Smooth scroll back to start
-          scrollContainerRef.current.scrollTo({
-            left: 0,
-            behavior: "smooth",
-          });
-          setCurrentIndex(0);
-        } else {
-          scroll("right");
-        }
-      }
-    }, 4000);
-
+    if (isPaused) return;
+    const interval = setInterval(() => go(1), 4000);
     return () => clearInterval(interval);
-  }, [isAutoScrolling, isHovering, currentIndex]);
+  }, [isPaused, go]);
 
-  // Handle scroll events to update index
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      const scrollLeft = scrollContainerRef.current.scrollLeft;
-      const cardWidth = 320;
-      const newIndex = Math.round(scrollLeft / cardWidth);
-      if (newIndex !== currentIndex && newIndex < services.length) {
-        setCurrentIndex(newIndex);
-      }
-    }
-  };
+  // Re-measure on mount + resize
+  useEffect(() => {
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [measure]);
 
   return (
-    <section className="flex flex-col lg:flex-row w-full min-h-145 bg-white overflow-hidden font-sans relative">
-      {/* --- LEFT PANEL: Enhanced Promo Block --- */}
+    <section className="relative overflow-hidden bg-[#05162E] py-20 md:py-28 font-sans">
+      {/* Background glows */}
+      <div className="pointer-events-none absolute -top-40 right-0 h-112 w-md rounded-full bg-[#10A7D8]/15 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-40 -left-24 h-96 w-96 rounded-full bg-[#F3B43F]/10 blur-3xl" />
       <div
-        className="w-full lg:w-1/4 p-8 md:p-12 flex flex-col justify-between text-white relative shrink-0 overflow-hidden"
-        style={{ backgroundColor: theme?.colors?.primaryDark || "#0a1a2f" }}
-      >
-        {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#F3B43F]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/5 rounded-full blur-2xl" />
+        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+          backgroundSize: "32px 32px",
+        }}
+      />
 
-        <div className="relative z-10 space-y-4">
-          <div className="flex items-center gap-2">
-            <Sparkles size={16} className="text-[#F3B43F]" />
-            <span className="text-xs uppercase tracking-widest text-[#F3B43F] font-bold">
+      <div className="relative mx-auto grid max-w-7xl items-stretch gap-10 px-5 md:px-10 lg:grid-cols-[340px_minmax(0,1fr)] lg:gap-12">
+        {/* ── LEFT: Promo card ── */}
+        <aside className="relative flex flex-col justify-between overflow-hidden rounded-3xl bg-linear-to-br from-[#F3B43F] via-[#F59E3B] to-[#E95432] p-8 text-[#05162E] shadow-2xl shadow-[#E95432]/20 md:p-10">
+          <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/20" />
+          <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full border-40 border-white/10" />
+
+          <div className="relative">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#05162E]/10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.25em]">
+              <Sparkles size={14} />
               Exclusive Rates
             </span>
-          </div>
 
-          <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-none">
-            Up To <br />
-            <span className="text-[#F3B43F]">50%</span> <br />
-            <span className="text-2xl font-light tracking-normal">OFF</span>
-          </h2>
-
-          <p className="text-sm text-white/60 max-w-xs mt-4 leading-relaxed">
-            Book now and unlock premium experiences at unbeatable prices.
-            Limited time offer.
-          </p>
-        </div>
-
-        {/* Enhanced Stats */}
-        <div className="relative z-10 mt-12 lg:mt-0 grid grid-cols-3 gap-4 pt-8 border-t border-white/10">
-          <div className="group cursor-pointer">
-            <p className="text-2xl font-bold group-hover:text-[#F3B43F] transition-colors">
-              50k+
+            <p className="mt-10 text-lg font-bold">Up To</p>
+            <p className="text-[7rem] font-black leading-[0.9] tracking-tighter md:text-[8.5rem]">
+              50<span className="align-top text-5xl md:text-6xl">%</span>
             </p>
-            <p className="text-[10px] text-white/60 uppercase tracking-wider">
-              Tickets Sold
+            <p className="mt-1 text-3xl font-light tracking-[0.35em]">OFF</p>
+
+            <p className="mt-6 max-w-xs text-sm font-medium leading-relaxed text-[#05162E]/75">
+              Book now and unlock premium experiences at unbeatable prices.
+              Limited time offer.
             </p>
           </div>
-          <div className="group cursor-pointer">
-            <p className="text-2xl font-bold group-hover:text-[#F3B43F] transition-colors">
-              12k+
-            </p>
-            <p className="text-[10px] text-white/60 uppercase tracking-wider">
-              Happy Clients
-            </p>
-          </div>
-          <div className="group cursor-pointer">
-            <p className="text-2xl font-bold group-hover:text-[#F3B43F] transition-colors">
-              98%
-            </p>
-            <p className="text-[10px] text-white/60 uppercase tracking-wider">
-              Satisfaction
-            </p>
-          </div>
-        </div>
-      </div>
 
-      {/* --- RIGHT PANEL: Enhanced Carousel --- */}
-      <div
-        className="w-full lg:w-3/4 p-8 md:p-12 flex flex-col justify-between overflow-hidden relative"
-        style={{ backgroundColor: theme?.colors?.primarySky || "#10A7D8" }}
-      >
-        {/* Background pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `radial-gradient(circle at 20px 20px, white 1px, transparent 1px)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-
-        {/* Header with Enhanced Controls */}
-        <div className="relative z-10 flex items-end justify-between mb-8">
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <div className="w-1 h-8 bg-[#F3B43F] rounded-full" />
-              <p className="text-xs uppercase tracking-widest text-white/80 font-semibold">
-                Our Offerings
-              </p>
-            </div>
-            <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-              Incredible <span className="text-[#F3B43F]">Last-Minute</span>{" "}
-              Offers
-            </h3>
-          </div>
-
-          <div className="flex gap-3 shrink-0">
-            <button
-              onClick={() => scroll("left")}
-              className="w-12 h-12 rounded-full flex items-center justify-center bg-white/20 hover:bg-white/35 text-white transition-all hover:scale-105 backdrop-blur-sm border border-white/10"
-              aria-label="Previous items"
-            >
-              <ArrowLeft size={20} />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="w-12 h-12 rounded-full flex items-center justify-center bg-white hover:bg-[#E95432] text-black hover:text-white transition-all hover:scale-105 shadow-lg"
-              aria-label="Next items"
-            >
-              <ArrowRight size={20} />
-            </button>
-          </div>
-        </div>
-
-        {/* Enhanced Scroll Container with Full-Sized Images */}
-        <div
-          ref={scrollContainerRef}
-          onScroll={handleScroll}
-          onMouseEnter={() => {
-            setIsHovering(true);
-            setIsAutoScrolling(false);
-          }}
-          onMouseLeave={() => {
-            setIsHovering(false);
-            setIsAutoScrolling(true);
-          }}
-          className="relative z-10 flex gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-6"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {services.map((service, index) => (
-            <div
-              key={service.id}
-              className="min-w-70 md:min-w-85 h-105 rounded-2xl overflow-hidden relative group snap-start shrink-0 shadow-xl transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
-            >
-              {/* Full-Sized Image with Zoom Effect */}
-              <div className="absolute inset-0 w-full h-full">
-                <img
-                  loading="lazy"
-                  style={{
-                    height: "100%",
-                  }}
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-
-              {/* Enhanced Gradient Overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/95 transition-all duration-500" />
-
-              {/* Enhanced Status Tags */}
-              <div className="absolute top-4 left-4 flex gap-2">
-                <span className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-black bg-white/90 backdrop-blur-sm rounded-lg shadow-lg flex items-center gap-1.5">
-                  <Star size={12} className="fill-[#F3B43F] text-[#F3B43F]" />
-                  {service.rating}
-                </span>
-                <span className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white bg-black/50 backdrop-blur-sm rounded-lg border border-white/20">
-                  {service.tag}
-                </span>
-              </div>
-
-              {/* Icon Attachment with Animation */}
-              <div className="absolute top-20 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 group-hover:scale-110 transition-transform duration-300">
-                {service.icon}
-              </div>
-
-              {/* Enhanced Main Content */}
-              <div className="absolute bottom-0 inset-x-0 p-6 text-white flex flex-col justify-end">
-                <h4 className="text-2xl font-bold tracking-tight mb-2 group-hover:text-[#F3B43F] transition-colors">
-                  {service.title}
-                </h4>
-                <p className="text-sm text-white/80 line-clamp-2 leading-relaxed mb-4">
-                  {service.description}
+          <div className="relative mt-12 flex justify-between gap-3 border-t border-[#05162E]/15 pt-6">
+            {stats.map((s) => (
+              <div key={s.label}>
+                <p className="text-2xl font-black">{s.num}</p>
+                <p className="mt-0.5 whitespace-nowrap text-[10px] font-bold uppercase tracking-wide text-[#05162E]/65">
+                  {s.label}
                 </p>
-
-                <div className="flex items-center gap-2 mb-4">
-                  <Clock size={14} className="text-[#F3B43F]" />
-                  <span className="text-xs text-white/60">
-                    Limited time offer • Book now
-                  </span>
-                </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Enhanced Navigation Dots */}
-        <div className="relative z-10 flex justify-center gap-2 mt-6">
-          {services.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                if (scrollContainerRef.current) {
-                  scrollContainerRef.current.scrollTo({
-                    left: index * 340,
-                    behavior: "smooth",
-                  });
-                  setCurrentIndex(index);
-                }
-              }}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? "w-8 bg-[#F3B43F]"
-                  : "w-2 bg-white/30 hover:bg-white/50"
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Auto-scroll indicator */}
-        {isAutoScrolling && !isHovering && (
-          <div className="absolute bottom-4 right-8 text-xs text-white/40 flex items-center gap-2">
-            <span className="animate-pulse">●</span>
-            Auto-scrolling
+            ))}
           </div>
-        )}
+        </aside>
+
+        {/* ── RIGHT: Carousel ── */}
+        <div
+          className="flex min-w-0 flex-col justify-center"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Header */}
+          <div className="mb-8 flex items-end justify-between gap-6">
+            <div>
+              <div className="mb-4 flex items-center gap-3">
+                <span className="h-px w-8 bg-[#F3B43F]" />
+                <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#F3B43F]">
+                  Our Offerings
+                </p>
+              </div>
+              <h3 className="text-3xl font-black tracking-tight text-white md:text-5xl">
+                Incredible{" "}
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-[#F3B43F] to-[#FA7252]">
+                  Last-Minute
+                </span>{" "}
+                Offers
+              </h3>
+            </div>
+
+            <div className="hidden shrink-0 gap-3 sm:flex">
+              <button
+                onClick={() => go(-1)}
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white hover:border-[#F3B43F] hover:bg-[#F3B43F] hover:text-[#05162E]"
+                aria-label="Previous offers"
+              >
+                <ArrowLeft size={20} />
+              </button>
+              <button
+                onClick={() => go(1)}
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#05162E] hover:bg-[#F3B43F]"
+                aria-label="Next offers"
+              >
+                <ArrowRight size={20} />
+              </button>
+            </div>
+          </div>
+
+          {/* Cards */}
+          <div
+            ref={scrollRef}
+            onScroll={measure}
+            className="-mt-3 -mr-5 flex snap-x snap-mandatory gap-5 overflow-x-auto pt-3 pr-5 pb-8 md:-mr-10 md:pr-10 xl:-mr-[calc((100vw-80rem)/2+2.5rem)] xl:pr-[calc((100vw-80rem)/2+2.5rem)] [&::-webkit-scrollbar]:hidden"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {services.map((service) => (
+              <article
+                key={service.id}
+                className="group flex w-70 shrink-0 snap-start flex-col overflow-hidden rounded-3xl bg-white shadow-xl shadow-black/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl sm:w-75"
+              >
+                {/* Image */}
+                <div className="relative h-52 overflow-hidden">
+                  {/* height set inline: global `img { height: auto }` beats h-full */}
+                  <img
+                    loading="lazy"
+                    src={service.image}
+                    alt={service.title}
+                    style={{ height: "100%" }}
+                    className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-[#05162E]/60 via-transparent to-transparent" />
+
+                  <div className="absolute left-4 top-4 flex gap-2">
+                    <span className="flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#05162E] shadow-lg">
+                      <Star size={12} className="fill-[#F3B43F] text-[#F3B43F]" />
+                      {service.rating}
+                    </span>
+                    <span className="rounded-full border border-white/25 bg-[#05162E]/50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md">
+                      {service.tag}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Body */}
+                <div className="relative flex flex-1 flex-col p-6 pt-8">
+                  <span className="absolute -top-6 right-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0B2C56] text-[#F3B43F] shadow-lg ring-4 ring-white transition-colors duration-300 group-hover:bg-[#E95432] group-hover:text-white">
+                    {service.icon}
+                  </span>
+
+                  <h4 className="text-xl font-bold tracking-tight text-[#0B2C56]">
+                    {service.title}
+                  </h4>
+                  <p className="mt-2 min-h-11 line-clamp-2 text-sm leading-relaxed text-[#607086]">
+                    {service.description}
+                  </p>
+
+                  <div className="mt-4 mb-5 flex items-center gap-2 text-xs text-[#607086]">
+                    <Clock size={14} className="text-[#E95432]" />
+                    Limited time offer • Book now
+                  </div>
+
+                  <div className="mt-auto flex items-center justify-between border-t border-[#D9E4EF] pt-5">
+                    <p className="text-lg font-black text-[#0B2C56]">
+                      {service.price}
+                    </p>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D9E4EF] text-[#0B2C56] transition-all duration-300 group-hover:border-[#E95432] group-hover:bg-[#E95432] group-hover:text-white">
+                      <ArrowUpRight size={18} />
+                    </span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* Progress dots + counter */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              {Array.from({ length: maxIndex + 1 }, (_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToIndex(index)}
+                  aria-label={`Go to offers ${index + 1}`}
+                  className={`h-2 rounded-full ${
+                    index === activeIndex
+                      ? "w-8 bg-[#F3B43F]"
+                      : "w-2 bg-white/25 hover:bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
+            <span className="text-sm font-bold tabular-nums text-white/50">
+              <span className="text-white">
+                {String(activeIndex + 1).padStart(2, "0")}
+              </span>{" "}
+              / {String(maxIndex + 1).padStart(2, "0")}
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );

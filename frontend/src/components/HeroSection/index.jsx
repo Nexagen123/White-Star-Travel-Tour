@@ -125,7 +125,7 @@ export default function HeroSection() {
             {/* Logo */}
             <Link to="/" className="shrink-0 flex items-center gap-3">
               <img
-                style={{ height: "42px" }}
+                style={{ background: "white", height: "75px" }}
                 aria-label="White Star Travel & Tours"
                 src={logo}
                 alt="White Star Travel & Tours"
@@ -362,55 +362,67 @@ export default function HeroSection() {
       </section>
 
       {/* ══════════ GROUP CARDS STRIP ══════════ */}
-      <section className="relative bg-white py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-5 md:px-10">
+      <section className="relative overflow-hidden bg-[#F5F8FC] py-20 md:py-28">
+        {/* Decorative glows */}
+        <div className="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full bg-[#10A7D8]/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-[#F3B43F]/10 blur-3xl" />
+
+        <div className="relative max-w-7xl mx-auto px-5 md:px-10">
           {/* Section header */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-14">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-px bg-[#E95432]" />
-                <span className="text-[#E95432] text-[11px] font-bold uppercase tracking-[0.35em]">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#E95432]/20 bg-[#E95432]/5 px-4 py-1.5 mb-5">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#E95432]" />
+                <span className="text-[#E95432] text-[11px] font-bold uppercase tracking-[0.3em]">
                   Our Packages
                 </span>
               </div>
-              <h2 className="text-3xl md:text-5xl font-black text-[#0B2C56] tracking-tight">
-                Explore Group Travel
+              <h2 className="text-4xl md:text-5xl font-black text-[#0B2C56] tracking-tight">
+                Explore{" "}
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-[#E95432] to-[#F3B43F]">
+                  Group Travel
+                </span>
               </h2>
             </div>
-            <p className="text-gray-500 text-sm md:text-base max-w-sm">
+            <p className="text-[#607086] text-sm md:text-base max-w-sm leading-relaxed md:text-right">
               Choose your destination and let us handle the rest — affordable,
               reliable, fully managed group flights.
             </p>
           </div>
 
-          {/* Cards grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
-            {heroGroups.map((group, idx) => (
-              <Link
-                key={group.label}
-                to={isLoggedIn ? "/dashboard/groups" : "/auth/register"}
-                className="group"
-              >
-                <div className="relative h-56 sm:h-64 overflow-hidden bg-gray-100">
-                  <span className="absolute top-3 left-3 z-10 text-white/80 font-black text-xs tabular-nums">
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
+          {/* Bento grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-[200px] sm:auto-rows-[240px] gap-3 md:gap-5">
+            {heroGroups.map((group, idx) => {
+              const featured = idx === 0;
+              const wide = idx === heroGroups.length - 1;
+              return (
+                <Link
+                  key={group.label}
+                  to={isLoggedIn ? "/dashboard/groups" : "/auth/register"}
+                  className={`group relative overflow-hidden rounded-3xl bg-[#0B2C56] shadow-lg shadow-[#0B2C56]/10 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-[#0B2C56]/25 ${
+                    featured ? "col-span-2 lg:row-span-2" : ""
+                  } ${wide ? "col-span-2" : ""}`}
+                >
+                  {/* height set inline: global `img { height: auto }` beats h-full */}
                   <img
                     src={group.image}
                     alt={group.label}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    loading="lazy"
+                    style={{ height: "100%" }}
+                    className="absolute inset-0 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-[#05162E]/10 group-hover:bg-[#05162E]/0 transition-colors duration-500" />
-                  <div className="absolute inset-0 border border-transparent group-hover:border-[#F3B43F] transition-colors duration-300" />
-                </div>
-                <div className="mt-4">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
-                    {group.tag}
-                  </p>
-                  <h3 className="mt-1 text-base font-black text-[#0B2C56] flex items-center justify-between">
-                    {group.label}
+                  <div className="absolute inset-0 bg-linear-to-t from-[#05162E]/90 via-[#05162E]/25 to-transparent" />
+                  <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 group-hover:ring-[#F3B43F]/70 transition-all duration-300" />
+
+                  {/* Index chip */}
+                  <span className="absolute top-4 left-4 z-10 rounded-full border border-white/25 bg-white/15 px-3 py-1 text-[11px] font-bold tabular-nums text-white backdrop-blur-md">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+
+                  {/* Arrow button */}
+                  <span className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#0B2C56] shadow-lg transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#E95432] group-hover:text-white">
                     <svg
-                      className="w-4 h-4 text-gray-300 group-hover:text-[#E95432] group-hover:translate-x-1 transition-all duration-300"
+                      className="h-4 w-4"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -419,41 +431,70 @@ export default function HeroSection() {
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                        d="M7 17L17 7M17 7H8M17 7v9"
                       />
                     </svg>
-                  </h3>
-                  <span className="block mt-2 h-px w-0 bg-[#F3B43F] transition-all duration-300 group-hover:w-full" />
-                </div>
-              </Link>
-            ))}
+                  </span>
+
+                  {/* Caption */}
+                  <div className="absolute inset-x-0 bottom-0 z-10 p-5 md:p-6">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#F3B43F] md:tracking-[0.25em]">
+                      {group.tag}
+                    </p>
+                    <h3
+                      className={`mt-1.5 font-black leading-tight text-white ${
+                        featured ? "text-2xl md:text-4xl" : "text-lg md:text-xl"
+                      }`}
+                    >
+                      {group.label}
+                    </h3>
+                    {featured && (
+                      <p className="mt-2 hidden max-w-xs text-sm text-white/70 sm:block">
+                        Browse every available group departure across all routes.
+                      </p>
+                    )}
+                    <span className="mt-3 block h-0.5 w-8 rounded-full bg-[#F3B43F] transition-all duration-500 group-hover:w-20" />
+                  </div>
+                </Link>
+              );
+            })}
           </div>
 
           {/* Bottom CTA if not logged in */}
           {!isLoggedIn && (
-            <div className="mt-16 pt-12 border-t border-gray-100 text-center">
-              <p className="text-gray-500 text-sm mb-5">
-                Create a free account to browse and book group travel packages
-              </p>
-              <Link
-                to="/auth/register"
-                className="inline-flex items-center gap-3 bg-[#0B2C56] hover:bg-[#E95432] text-white font-bold text-[13px] uppercase tracking-[0.15em] px-9 py-4 transition-all duration-300"
-              >
-                Register for Free
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
+            <div className="relative mt-14 overflow-hidden rounded-3xl bg-linear-to-br from-[#0B2C56] to-[#05162E] px-6 py-10 md:px-12 md:py-12">
+              <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-[#F3B43F]/15 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-20 left-1/3 h-56 w-56 rounded-full bg-[#10A7D8]/15 blur-3xl" />
+              <div className="relative flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#F3B43F]">
+                    Free to join
+                  </p>
+                  <p className="mt-2 max-w-xl text-lg font-bold text-white md:text-2xl">
+                    Create a free account to browse and book group travel
+                    packages
+                  </p>
+                </div>
+                <Link
+                  to="/auth/register"
+                  className="inline-flex shrink-0 items-center gap-3 rounded-full bg-[#E95432] px-8 py-4 text-[13px] font-bold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-white hover:text-[#0B2C56]"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  />
-                </svg>
-              </Link>
+                  Register for Free
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                    />
+                  </svg>
+                </Link>
+              </div>
             </div>
           )}
         </div>
