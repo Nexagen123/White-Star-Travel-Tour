@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8016/api", // backend ka port
-  // baseURL: "https://waqaremakkah.com/api", // backend ka port
+  // baseURL: "http://localhost:8016/api", // backend ka port
+  baseURL: "https://whitestartraveltours.com/api", // backend ka port
   withCredentials: true,
 });
 
@@ -73,7 +73,7 @@ export default axiosInstance;
 //         currentHost === "White Start Travel & Tourtravel.com" || currentHost === "www.White Start Travel & Tourtravel.com";
 
 //       if (isDashboardDomain && !window.location.pathname.startsWith("/")) {
-//         window.location.href = "https://waqaremakkah.com/login";
+//         window.location.href = "https://whitestartraveltours.com/login";
 //       }
 //     }
 

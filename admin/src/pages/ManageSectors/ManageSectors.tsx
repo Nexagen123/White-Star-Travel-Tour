@@ -140,7 +140,7 @@ function extractIATA(terminal: string): string {
 // White Start Travel & Tour
 // Mobile: 0344-7736611
 // Address: Opposite General Bus Stand, Faisalabad Road, Sumundri.New Civil lines Faisalabad.
-// Website: https://waqaremakkah.com/`;
+// Website: https://whitestartraveltours.com/`;
 
 //     return [header, ...lines, "=======================", footer].join("\n");
 // }
@@ -287,7 +287,7 @@ function buildCopyText(groups: UnifiedGroup[]): string {
 White Start Travel & Tour
 Mobile: 0344-7736611
 Address: Opposite General Bus Stand, Faisalabad Road, Sumundri.
-Website: https://waqaremakkah.com/`;
+Website: https://whitestartraveltours.com/`;
 
     return [header, ...lines, "=======================", footer].join("\n");
 }

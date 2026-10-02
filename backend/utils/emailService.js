@@ -188,7 +188,7 @@ export const sendPasswordResetEmail = async (
     console.log(`📤 Attempting to send password reset email to: ${email}`);
 
     // Construct reset link
-    const frontendURL = "https://waqaremakkah.com";
+    const frontendURL = "https://whitestartraveltours.com";
     const resetLink = `${frontendURL}/auth/forgot-password?token=${resetToken}&userId=${userId}`;
 
     const mailOptions = {
@@ -348,7 +348,7 @@ const getCredentialsEmailHTML = (
           </div>
 
           <div style="text-align: center;">
-            <a href="${"https://waqaremakkah.com"}" class="button">Login to Your Account</a>
+            <a href="${"https://whitestartraveltours.com"}" class="button">Login to Your Account</a>
           </div>
 
           <div class="warning">
@@ -415,7 +415,7 @@ export const sendCredentialsEmail = async (
         userName,
         companyName,
       ),
-      text: `Hello ${userName},\n\nWelcome to White Start Travel & Tour ! Your agency account has been created successfully.\n\nCompany: ${companyName}\n\nYour Login Credentials:\nAgent Code: ${agentCode}\nEmail: ${email}\nPassword: ${password}\n\nLogin URL: ${"https://waqaremakkah.com"}\n\nSecurity Tips:\n- Keep your credentials safe and secure\n- Do not share your password with anyone\n- We recommend changing your password after first login\n\nBest regards,\nWhite Start Travel & Tour `,
+      text: `Hello ${userName},\n\nWelcome to White Start Travel & Tour ! Your agency account has been created successfully.\n\nCompany: ${companyName}\n\nYour Login Credentials:\nAgent Code: ${agentCode}\nEmail: ${email}\nPassword: ${password}\n\nLogin URL: ${"https://whitestartraveltours.com"}\n\nSecurity Tips:\n- Keep your credentials safe and secure\n- Do not share your password with anyone\n- We recommend changing your password after first login\n\nBest regards,\nWhite Start Travel & Tour `,
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -444,9 +444,9 @@ export const sendCredentialsEmail = async (
 };
 
 const getAdminCredentialsLoginUrl = () => {
-  return `${"https://waqaremakkah.com/admin-portal/".replace(/\/$/, "")}/signin`;
+  return `${"https://whitestartraveltours.com/admin-portal/".replace(/\/$/, "")}/signin`;
 
-  const frontendUrl = "https://waqaremakkah.com".replace(/\/$/, "");
+  const frontendUrl = "https://whitestartraveltours.com".replace(/\/$/, "");
   return `${frontendUrl}/admin-portal/signin`;
 };
 
