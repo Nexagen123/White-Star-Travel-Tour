@@ -94,7 +94,7 @@ const RegisteredAgencies = () => {
   const [recoveringAgent, setRecoveringAgent] = useState<string | null>(null);
 
   const frontendUrl =
-    import.meta.env.VITE_FRONTEND_URL || "https://waqaremakkah.com/auth/login";
+    import.meta.env.VITE_FRONTEND_URL || "https://whitestartraveltours.com/auth/login";
 
   const MAX_ACTIVE_AGENTS = 2000;
 

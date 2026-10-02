@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const base_url = "https://waqaremakkah.com/admins/api";
+const base_url = "https://whitestartraveltours.com/admins/api";
 
 const token = "";
 
